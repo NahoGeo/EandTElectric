@@ -8,10 +8,11 @@ import { MotorCalculatorService } from '../../services/motor-calculator.service'
 })
 export class MotorCalculatorPage implements OnInit {
 
-  voltages=[]
-  threeHorses=[]
-  singleHorses=[]
+  voltages = []
+  threeHorses = []
+  singleHorses = []
   threePhaseValues = []
+  singlePhaseValues = []
 
   voltageVal:string
   threePhaseHorse:string
@@ -65,6 +66,12 @@ export class MotorCalculatorPage implements OnInit {
   loadThreePhaseValues() {
     if(this.voltageVal && this.threePhaseHorse) {
       this.threePhaseValues = this.motorService.getThreePhaseValues(`${this.voltageVal}${this.threePhaseHorse}`)
+    }
+  }
+
+  loadSinglePhaseValues() {
+    if (this.singlePhaseHorse) {
+      this.singlePhaseValues = this.motorService.getSinglePhaseValues(this.singlePhaseHorse)
     }
   }
 }

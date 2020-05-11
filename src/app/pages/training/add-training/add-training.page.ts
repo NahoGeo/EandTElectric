@@ -14,7 +14,7 @@ export class AddTrainingPage implements OnInit {
     id: '',
     title: '',
     awardedBy: '',
-    recognitionDate: new Date('').toDateString(),
+    recognitionDate: new Date().toDateString(),
     description: ''
   }
 

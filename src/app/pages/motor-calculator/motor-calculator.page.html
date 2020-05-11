@@ -45,7 +45,7 @@
         <div *ngIf="singlePhase">
             <ion-item lines="full">
                 <ion-label>Horse Power</ion-label>
-                <ion-select [(ngModel)]="singlePhaseHorse" value="" multiple="false" placeholder="Horse Power">
+                <ion-select [(ngModel)]="singlePhaseHorse" (ionChange)='loadSinglePhaseValues()' value="" multiple="false" placeholder="Horse Power">
                     <ion-select-option *ngFor="let sHorse of singleHorses" value="{{sHorse.val}}">{{sHorse.val}}</ion-select-option>
                 </ion-select>
             </ion-item>
@@ -54,13 +54,13 @@
                 <ion-col class="ion-text-center" size="3">115V</ion-col>
                 <ion-col class="ion-text-center" size="3" offset="1">230V</ion-col>
             </ion-row>
-            <ion-row *ngFor="let sField of singleTableFields">
-                <ion-col size="5">{{sField}}</ion-col>
+            <ion-row *ngFor="let sField of singlePhaseValues">
+                <ion-col size="5">{{sField.field}}</ion-col>
                 <ion-col *ngIf="singlePhaseHorse" size="3">
-                    <ion-input class="ion-no-padding ion-text-center" value="HDL36125" readonly></ion-input>
+                    <ion-input class="ion-no-padding ion-text-center" value="{{sField.v115}}" readonly></ion-input>
                 </ion-col>
                 <ion-col *ngIf="singlePhaseHorse" size="3" offset="1">
-                    <ion-input class="ion-no-padding ion-text-center" offset="1" value="HDL36125" readonly></ion-input>
+                    <ion-input class="ion-no-padding ion-text-center" offset="1" value="{{sField.v230}}" readonly></ion-input>
                 </ion-col>
             </ion-row>
         </div>

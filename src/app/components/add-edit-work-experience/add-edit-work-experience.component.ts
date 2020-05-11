@@ -21,8 +21,8 @@ export class AddEditWorkExperienceComponent implements OnInit {
   position: Position = {
     id: '',
     position: '',
-    startDate: new Date('').toDateString(),
-    endDate: new Date('').toDateString(),
+    startDate: new Date().toDateString(),
+    endDate: new Date().toDateString(),
     current: false,
     description: ''
   }
@@ -62,8 +62,8 @@ export class AddEditWorkExperienceComponent implements OnInit {
       this.position = {
         id: '',
         position: '',
-        startDate: new Date('').toDateString(),
-        endDate: new Date('').toDateString(),
+        startDate: new Date().toDateString(),
+        endDate: new Date().toDateString(),
         current: false,
         description: ''
       }

@@ -39,7 +39,7 @@ export class PersonalInformationPage implements OnInit {
   }
 
   checkImage(e) {
-    console.log(e.target.firstElementChild.files[0]);
+    console.log(e);
     
   }
   

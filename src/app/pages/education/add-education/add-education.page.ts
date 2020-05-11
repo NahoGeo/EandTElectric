@@ -12,8 +12,8 @@ export class AddEducationPage implements OnInit {
 
   education: Education = {
     institute: '',
-    startDate: new Date('').toDateString(),
-    endDate: new Date('').toDateString(),
+    startDate: new Date().toDateString(),
+    endDate: new Date().toDateString(),
     degree: '',
     current: false
   }

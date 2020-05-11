@@ -28,7 +28,7 @@ export class UserService {
         id: '1',
         institute:'Ceutec',
         startDate: new Date('01/17/2019').toDateString(),
-        endDate: new Date('').toDateString(),
+        endDate: new Date().toDateString(),
         degree: 'Diseño y Desarrollo Web',
         current: true
       },
