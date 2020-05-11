@@ -1,0 +1,68 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/e-toolbox"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Motor Calculator</ion-title>
+        <ion-item slot="end" lines="none">
+            <ion-icon name="calculator"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-card *ngIf="!singlePhase">
+            <ion-item lines="full" (click)="showThree()">
+                <ion-img src="../../assets/img/logo-trifasicoicono.png"></ion-img>
+                <ion-label style='padding-left: 10px;'>Three Phase</ion-label>
+            </ion-item>
+        </ion-card>
+        <div *ngIf="threePhase">
+            <ion-item lines="full">
+                <ion-label>Voltage</ion-label>
+                <ion-select [(ngModel)]="voltageVal" (ionChange)='loadThreePhaseValues()' value="" multiple="false" placeholder="Voltage">
+                    <ion-select-option *ngFor="let voltage of voltages" value="{{voltage.val}}">{{voltage.val}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item lines="full">
+                <ion-label>Horse Power</ion-label>
+                <ion-select [(ngModel)]="threePhaseHorse" (ionChange)='loadThreePhaseValues()' value="" multiple="false" placeholder="Horse Power">
+                    <ion-select-option *ngFor="let tHorse of threeHorses" value="{{tHorse.val}}">{{tHorse.val}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-row *ngFor="let tField of threePhaseValues">
+                <ion-col class="ion-no-padding" size="9">{{tField.field}}</ion-col>
+                <ion-input *ngIf="voltageVal && threePhaseHorse" class="ion-no-padding ion-text-center" size="2" offset="1" value="{{tField.val}}" readonly></ion-input>
+            </ion-row>
+        </div>
+        <ion-card *ngIf="!threePhase">
+            <ion-item lines="full" (click)="showSingle()">
+                <ion-img src="../../assets/img/logo-monofasicoicono.png"></ion-img>
+                <ion-label style='padding-left: 10px;'>Single Phase</ion-label>
+            </ion-item>
+        </ion-card>
+        <div *ngIf="singlePhase">
+            <ion-item lines="full">
+                <ion-label>Horse Power</ion-label>
+                <ion-select [(ngModel)]="singlePhaseHorse" value="" multiple="false" placeholder="Horse Power">
+                    <ion-select-option *ngFor="let sHorse of singleHorses" value="{{sHorse.val}}">{{sHorse.val}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-row *ngIf="singlePhaseHorse">
+                <ion-col size="5"></ion-col>
+                <ion-col class="ion-text-center" size="3">115V</ion-col>
+                <ion-col class="ion-text-center" size="3" offset="1">230V</ion-col>
+            </ion-row>
+            <ion-row *ngFor="let sField of singleTableFields">
+                <ion-col size="5">{{sField}}</ion-col>
+                <ion-col *ngIf="singlePhaseHorse" size="3">
+                    <ion-input class="ion-no-padding ion-text-center" value="HDL36125" readonly></ion-input>
+                </ion-col>
+                <ion-col *ngIf="singlePhaseHorse" size="3" offset="1">
+                    <ion-input class="ion-no-padding ion-text-center" offset="1" value="HDL36125" readonly></ion-input>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-list>
+</ion-content>

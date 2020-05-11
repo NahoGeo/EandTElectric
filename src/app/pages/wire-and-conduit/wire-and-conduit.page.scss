@@ -1,0 +1,29 @@
+ion-row {
+    padding: 5px;
+    .bord {
+        border: 1px solid gray;
+    }
+    ion-col {
+        padding: 0px !important;
+    }
+    ion-input {
+        border: solid 1px gray;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+}
+
+.table-title {
+    transform: rotate(270deg);
+}
+
+.Container {
+    height: 100%;
+    display: flex;
+}
+
+.SubContainer {
+    margin: auto;
+}

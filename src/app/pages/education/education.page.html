@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Education</ion-title>
+        <ion-item *ngIf="addEducation" slot="end" lines='none'>
+            <ion-icon name='add' routerLink="add-education"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-content class="ion-no-padding">
+            <ion-item *ngFor="let education of user.educations">
+                <ion-icon name="school" style="margin-right: 10px;"></ion-icon>
+                <ion-label class="ion-text-wrap">
+                    <ion-item lines='none' class="ion-no-padding ion">
+                        <h2>{{education.institute}}</h2>
+                        <ion-icon slot="end" name="pencil" [routerLink]="['edit-education', education.id]"></ion-icon>
+                    </ion-item>
+                    <ion-text>
+                        <p>{{education.degree}}</p>
+                        <p>{{education.startDate | date}} <span *ngIf="!education.current">to {{education.endDate | date}}</span></p>
+                    </ion-text>
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

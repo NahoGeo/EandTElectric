@@ -1,0 +1,23 @@
+<ion-card>
+    <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input [(ngModel)]="training.title" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Awarded By</ion-label>
+        <ion-input [(ngModel)]="training.awardedBy" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Recognition Date</ion-label>
+        <ion-datetime [(ngModel)]="training.recognitionDate" display-format="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea [(ngModel)]="training.description"></ion-textarea>
+    </ion-item>
+</ion-card>
+<ion-item>
+    <ion-button block color="primary" type="submit" (click)="saveChanges()">
+        Save changes
+    </ion-button>
+</ion-item>

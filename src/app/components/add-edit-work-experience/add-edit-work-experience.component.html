@@ -1,0 +1,27 @@
+<ion-card>
+    <ion-item>
+        <ion-label position="floating">Company</ion-label>
+        <ion-input [(ngModel)]="workExp.name" type="text"></ion-input>
+    </ion-item>
+    <ion-card-content>
+        <ion-item class="ion-no-padding" lines='none'>
+            <h2>Positions</h2>
+            <ion-icon *ngIf="addPosition" slot="end" name='add' (click)="PositionShowHide()"></ion-icon>
+        </ion-item>
+        <ion-text *ngFor="let position of workExp.positions">
+            <ion-item lines='none' class="ion-no-padding">
+                <p>{{position.position}}</p>
+                <ion-icon *ngIf="!showPositionForm" slot="end" name='pencil' (click)="editPosition(position.id)"></ion-icon>
+            </ion-item>
+            <p>{{position.startDate | date}} <span *ngIf="!position.current">to {{position.endDate | date}}</span></p>
+        </ion-text>
+    </ion-card-content>
+</ion-card>
+
+<app-add-edit-position *ngIf="showPositionForm" [position]='position' (hide)='PositionShowHide()' (newPosition)='savePosition($event)'></app-add-edit-position>
+
+<ion-item lines='none' *ngIf="!showPositionForm">
+    <ion-button block color="primary" style="margin: auto;" type="submit" (click)="saveChanges()">
+        Save changes
+    </ion-button>
+</ion-item>

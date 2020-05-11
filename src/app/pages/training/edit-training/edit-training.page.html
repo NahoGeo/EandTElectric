@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="training"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Edit Training</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <app-add-edit-training [training]='training' (newTraining)='editTraining($event)'></app-add-edit-training>
+</ion-content>
