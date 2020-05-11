@@ -3707,6 +3707,71 @@ export class MotorCalculatorService {
         }
       ]
     },
+    {
+      value: '1/3 hp',
+      results: [
+        {
+          field: 'Full Load Amps (FLA)',
+          v115: '7.2',
+          v230: '3.6'
+        },
+        {
+          field: 'Wire Size',
+          v115: '14',
+          v230: '14'
+        },
+        {
+          field: 'Circuit Breaker Size',
+          v115: '15',
+          v230: '15'
+        },
+        {
+          field: 'Breaker Cat No.',
+          v115: 'HDL26015',
+          v230: 'HDL26015'
+        },
+        {
+          field: 'HD Switch NEMA 1 Enclosed',
+          v115: 'H221N',
+          v230: 'H221N'
+        },
+        {
+          field: 'Dual Elem Time Delay Fuse Amps',
+          v115: '10',
+          v230: '5.6'
+        },
+        {
+          field: 'Fractional HP N1 Starter Class 2510',
+          v115: 'FG-2',
+          v230: 'FG-2'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'A7.65',
+          v230: 'A2.81'
+        },
+        {
+          field: 'Integral Starter N1 Enc 2510',
+          v115: 'MBG-1',
+          v230: 'MBG-1'
+        },
+        {
+          field: 'One Melting Alloy Thermal Unit',
+          v115: 'B7.70',
+          v230: 'B3.70'
+        },
+        {
+          field: 'NEMA Enclosed Starter Class 8536',
+          v115: 'SAG-11',
+          v230: 'SAG-11'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'B8.20',
+          v230: 'B4.15'
+        }
+      ]
+    },
   ]
 
   constructor() { }
