@@ -3772,6 +3772,266 @@ export class MotorCalculatorService {
         }
       ]
     },
+    {
+      value: '1/2 hp',
+      results: [
+        {
+          field: 'Full Load Amps (FLA)',
+          v115: '9.8',
+          v230: '4.9'
+        },
+        {
+          field: 'Wire Size',
+          v115: '14',
+          v230: '14'
+        },
+        {
+          field: 'Circuit Breaker Size',
+          v115: '20',
+          v230: '15'
+        },
+        {
+          field: 'Breaker Cat No.',
+          v115: 'HDL26020',
+          v230: 'HDL26015'
+        },
+        {
+          field: 'HD Switch NEMA 1 Enclosed',
+          v115: 'H221N',
+          v230: 'H221N'
+        },
+        {
+          field: 'Dual Elem Time Delay Fuse Amps',
+          v115: '15',
+          v230: '7'
+        },
+        {
+          field: 'Fractional HP N1 Starter Class 2510',
+          v115: 'FG-2',
+          v230: 'FG-2'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'A9.85',
+          v230: 'A5.30'
+        },
+        {
+          field: 'Integral Starter N1 Enc 2510',
+          v115: 'MBG-1',
+          v230: 'MBG-1'
+        },
+        {
+          field: 'One Melting Alloy Thermal Unit',
+          v115: 'B10.2',
+          v230: 'B4.85'
+        },
+        {
+          field: 'NEMA Enclosed Starter Class 8536',
+          v115: 'SBG-1',
+          v230: 'SAG-11'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'B11.5',
+          v230: 'B5.50'
+        }
+      ]
+    },
+    {
+      value: '3/4 hp',
+      results: [
+        {
+          field: 'Full Load Amps (FLA)',
+          v115: '13.8',
+          v230: '6.9'
+        },
+        {
+          field: 'Wire Size',
+          v115: '14',
+          v230: '14'
+        },
+        {
+          field: 'Circuit Breaker Size',
+          v115: '25',
+          v230: '15'
+        },
+        {
+          field: 'Breaker Cat No.',
+          v115: 'HDL26025',
+          v230: 'HDL26015'
+        },
+        {
+          field: 'HD Switch NEMA 1 Enclosed',
+          v115: 'H221N',
+          v230: 'H221N'
+        },
+        {
+          field: 'Dual Elem Time Delay Fuse Amps',
+          v115: '20',
+          v230: '10'
+        },
+        {
+          field: 'Fractional HP N1 Starter Class 2510',
+          v115: 'FG-2',
+          v230: 'FG-2'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'A14.8',
+          v230: 'A6.99'
+        },
+        {
+          field: 'Integral Starter N1 Enc 2510',
+          v115: 'MBG-1',
+          v230: 'MBG-1'
+        },
+        {
+          field: 'One Melting Alloy Thermal Unit',
+          v115: 'B14.0',
+          v230: 'B6.90'
+        },
+        {
+          field: 'NEMA Enclosed Starter Class 8536',
+          v115: 'SBG-1',
+          v230: 'SAG-11'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'B15.5',
+          v230: 'B7.70'
+        }
+      ]
+    },
+    {
+      value: '1 hp',
+      results: [
+        {
+          field: 'Full Load Amps (FLA)',
+          v115: '16',
+          v230: '8'
+        },
+        {
+          field: 'Wire Size',
+          v115: '14',
+          v230: '14'
+        },
+        {
+          field: 'Circuit Breaker Size',
+          v115: '30',
+          v230: '15'
+        },
+        {
+          field: 'Breaker Cat No.',
+          v115: 'HDL26030',
+          v230: 'HDL26015'
+        },
+        {
+          field: 'HD Switch NEMA 1 Enclosed',
+          v115: 'H221N',
+          v230: 'H221N'
+        },
+        {
+          field: 'Dual Elem Time Delay Fuse Amps',
+          v115: '25',
+          v230: '12'
+        },
+        {
+          field: 'Fractional HP N1 Starter Class 2510',
+          v115: 'FG-2',
+          v230: 'FG-2'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'A17.9',
+          v230: 'A8.38'
+        },
+        {
+          field: 'Integral Starter N1 Enc 2510',
+          v115: 'MBG-1',
+          v230: 'MBG-1'
+        },
+        {
+          field: 'One Melting Alloy Thermal Unit',
+          v115: 'B17.5',
+          v230: 'B8.20'
+        },
+        {
+          field: 'NEMA Enclosed Starter Class 8536',
+          v115: 'SBG-1',
+          v230: 'SAG-11'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'B19.5',
+          v230: 'B9.10'
+        }
+      ]
+    },
+    {
+      value: '1.5 hp',
+      results: [
+        {
+          field: 'Full Load Amps (FLA)',
+          v115: '20',
+          v230: '10'
+        },
+        {
+          field: 'Wire Size',
+          v115: '12',
+          v230: '14'
+        },
+        {
+          field: 'Circuit Breaker Size',
+          v115: '40',
+          v230: '20'
+        },
+        {
+          field: 'Breaker Cat No.',
+          v115: 'HDL26040',
+          v230: 'HDL26020'
+        },
+        {
+          field: 'HD Switch NEMA 1 Enclosed',
+          v115: 'H221N',
+          v230: 'H221N'
+        },
+        {
+          field: 'Dual Elem Time Delay Fuse Amps',
+          v115: '30',
+          v230: '15'
+        },
+        {
+          field: 'Fractional HP N1 Starter Class 2510',
+          v115: '-',
+          v230: '-'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: '-',
+          v230: '-'
+        },
+        {
+          field: 'Integral Starter N1 Enc 2510',
+          v115: 'MCG-1',
+          v230: 'MBG-1'
+        },
+        {
+          field: 'One Melting Alloy Thermal Unit',
+          v115: 'B25.0',
+          v230: 'B12.80'
+        },
+        {
+          field: 'NEMA Enclosed Starter Class 8536',
+          v115: 'SCG-1',
+          v230: 'SBG-1'
+        },
+        {
+          field: 'Thermal Unit',
+          v115: 'B28.0',
+          v230: 'B14.0'
+        }
+      ]
+    },
   ]
 
   constructor() { }
