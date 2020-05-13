@@ -16,7 +16,7 @@
 
         <ion-row class="ion-padding-horizontal">
             <ion-col size="12">
-                <ion-avatar>
+                <ion-avatar *ngIf="user.profileImage">
                     <img [src]="user.profileImage">
                 </ion-avatar>
             </ion-col>
@@ -24,12 +24,12 @@
 
         <ion-card-content>
             <ion-item lines='none' class="ion-no-margin ion-no-padding">
-                <ion-card-title>{{user.firstName}} {{user.lastName}}</ion-card-title>
+                <ion-card-title>{{user.firstName == '' ? 'Full' : user.firstName}} {{user.lastName == '' ? 'Name' :user.lastName}}</ion-card-title>
                 <ion-icon slot="end" name="pencil" routerLink="/edit-profile"></ion-icon>
             </ion-item>
-            <ion-card-subtitle>{{user.workExps[0].positions[0].position}} in {{user.workExps[0].name}}</ion-card-subtitle>
-            <ion-label>{{user.workExps[0].name}} - {{user.educations[0].institute}}</ion-label><br>
-            <ion-label>{{user.address.city}}, {{user.address.state}}, {{user.address.country}}</ion-label>
+            <ion-card-subtitle>{{user.workExps[0] == undefine ? "Position" :user.workExps[0].positions[0].position}} in {{user.workExps[0] == undefine ? "Company Name" :user.workExps[0].name}}</ion-card-subtitle>
+            <ion-label>{{user.workExps[0] == undefine ? "Company Name" :user.workExps[0].name}} - {{user.educations[0] == undefine ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
+            <ion-label>{{user.address.city == '' ? "City" : user.address.city}}, {{user.address.state == '' ? "State" : user.address.state}}, {{user.address.country == '' ? "Country" : user.address.country}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -41,10 +41,10 @@
             <ion-item *ngFor="let workExp of user.workExps">
                 <ion-icon name="business" style="margin-right: 10px;"></ion-icon>
                 <ion-label class="ion-text-wrap">
-                    <h2>{{workExp.name}}</h2>
+                    <h2>{{user.workExps[0] == undefine ? "Company Name" :workExp.name}}</h2>
                     <ion-text *ngFor="let position of workExp.positions">
-                        <p>{{position.position}}</p>
-                        <p>{{position.startDate | date}} <span *ngIf="!position.current">to {{position.endDate | date}}</span></p>
+                        <p>{{user.workExps[0] == undefine ? "Position" :position.position}}</p>
+                        <p>{{user.workExps[0] == undefine ? "Start Date" :position.startDate | date}} <span *ngIf="!position.current">to {{user.workExps[0] == undefine ? "End Date" :position.endDate | date}}</span><span *ngIf="position.current">(current)</span></p>
                     </ion-text>
                 </ion-label>
             </ion-item>
@@ -59,10 +59,10 @@
             <ion-item *ngFor="let education of user.educations">
                 <ion-icon name="school" style="margin-right: 10px;"></ion-icon>
                 <ion-label class="ion-text-wrap">
-                    <h2>{{education.institute}}</h2>
+                    <h2>{{user.educations[0] == undefine ? "Institute's Name" :education.institute}}</h2>
                     <ion-text>
-                        <p>{{education.degree}}</p>
-                        <p>{{education.startDate | date}} <span *ngIf="!education.current">to {{education.endDate | date}}</span></p>
+                        <p>{{user.educations[0] == undefine ? "Degree" :education.degree}}</p>
+                        <p>{{education.startDate | date}} <span *ngIf="!education.current">to {{education.endDate | date}}</span><span *ngIf="position.current">(current)</span></p>
                     </ion-text>
                 </ion-label>
             </ion-item>

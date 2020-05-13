@@ -10,83 +10,22 @@ import { WorkExp } from '../models/work-exp.model';
 })
 export class UserService {
   user: User= {
-    profileImage: 'https://media-exp1.licdn.com/dms/image/C5603AQHhwWLkhiUPcA/profile-displayphoto-shrink_200_200/0?e=1594252800&v=beta&t=nohSlBQ9Qd93Y8XxQTaFA_1ADJpcm_Ms6IMwzMmJzh4',
-    firstName: 'Oscar',
-    lastName: 'Bonilla',
-    email: 'oscargbc2012@gmail.com',
+    profileImage: '',
+    firstName: '',
+    lastName: '',
+    email: '',
     phoneNumber: '',
-    celphoneNumber: '32502753',
+    celphoneNumber: '',
     address: {
-      street: '8 avenida',
-      city: 'San Pedro Sula',
-      state: 'Cortes',
-      zipCode: '21101',
-      country: 'Honduras'
+      street: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: ''
     },
-    educations: [
-      {
-        id: '1',
-        institute:'Ceutec',
-        startDate: new Date('01/17/2019').toDateString(),
-        endDate: new Date().toDateString(),
-        degree: 'Diseño y Desarrollo Web',
-        current: true
-      },
-      {
-        id: '2',
-        institute: 'INTUR',
-        startDate: new Date('02/16/2011').toDateString(),
-        endDate: new Date('11/15/2011').toDateString(),
-        degree: 'Bachiller en Ciencias y Letras',
-        current: false
-      }
-    ],
-    workExps: [
-      {
-        id: '1',
-        name: 'Engineer and Sistems of America',
-        positions: [
-          {
-            id: '1',
-            position: 'Web Developer',
-            startDate: new Date('04/20/2020').toDateString(),
-            endDate: new Date('').toDateString(),
-            description: 'Free Lancer Developer',
-            current: true
-          }
-        ]
-      },
-      {
-        id: '2',
-        name: 'Marcas Mundiales de Honduras',
-        positions: [
-          {
-            id: '1',
-            position: 'Ejecutivo de Cuentas y Logistica',
-            startDate: new Date('06/20/2019').toDateString(),
-            endDate: new Date('08/30/2019').toDateString(),
-            description: 'Reporte de Ventas y Cobros',
-            current: false
-          }
-        ]
-      }
-    ],
-    trainings: [
-      {
-        id: '1',
-        title: 'let\'s git good',
-        awardedBy: 'Centro Universitario tecnologico',
-        recognitionDate: new Date('03/13/2020').toDateString(),
-        description: ''
-      },
-      {
-        id: '2',
-        title: 'Dedicate a ser mejor',
-        awardedBy: 'Hub de emprendimiento de la Universidad Tecnologica Centroamericana',
-        recognitionDate: new Date('11/14/2019').toDateString(),
-        description: ''
-      }
-    ]
+    educations: [],
+    workExps: [],
+    trainings: []
   }
 
   constructor() { }
@@ -122,6 +61,7 @@ export class UserService {
   }
 
   editUserProfile(data: any) {
+    this.user.profileImage = data.profileImage
     this.user.firstName = data.firstName
     this.user.lastName = data.lastName
     this.user.email = data.email

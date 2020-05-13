@@ -10,14 +10,14 @@ import { AlertController } from '@ionic/angular';
 export class WireAndConduitPage implements OnInit {
 
   wireSizes = []
-  wireTypes = []
   notes = []
+  wireSize
+  results
   
   constructor(private wireService: WireAndConduitService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.wireSizes = this.wireService.getWireSizes()
-    this.wireTypes = this.wireService.getWireTypes()
     this.notes = this.wireService.getNotes()
     this.showNotes()
   }
@@ -41,4 +41,7 @@ export class WireAndConduitPage implements OnInit {
     await alert.present();
   }
 
+  getResults() {
+    this.results = this.wireService.getResults(this.wireSize)
+  }
 }

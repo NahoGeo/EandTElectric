@@ -1,3 +1,8 @@
 ion-content ion-toolbar {
-  --background: translucent;
+    --background: translucent;
+}
+
+ion-card {
+    padding-top: 15px;
+    border-radius: 20px;
 }

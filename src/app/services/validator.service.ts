@@ -44,7 +44,7 @@ export class ValidatorService {
   }
   
   isPhone(stringToValidate) {
-      var regularExpression = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/;
+      var regularExpression = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/; //-> /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/
       return regularExpression.test(stringToValidate);
   }
 

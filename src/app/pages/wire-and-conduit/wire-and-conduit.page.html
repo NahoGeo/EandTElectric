@@ -15,15 +15,15 @@
     <div>
         <ion-item lines="full">
             <ion-label>Wire Size</ion-label>
-            <ion-select [(ngModel)]="wireSize" value="" multiple="false" placeholder="Wire Size">
-                <ion-select-option *ngFor="let wireSize of wireSizes" value="{{wireSize.val}}">{{wireSize.val}}</ion-select-option>
+            <ion-select [(ngModel)]="wireSize" (ionChange)='getResults()' value="" multiple="false" placeholder="Wire Size">
+                <ion-select-option *ngFor="let wireSize of wireSizes" value="{{wireSize.value}}">{{wireSize.value}}</ion-select-option>
             </ion-select>
         </ion-item>
-        <ion-row *ngFor="let wireType of wireTypes" class="ion-no-padding">
+        <ion-row *ngFor="let wireType of results" class="ion-no-padding">
             <ion-col size="2" class="ion-no-padding bord">
                 <div class="Container">
                     <div class="SubContainer">
-                        <div class="table-title">{{wireType}}</div>
+                        <div class="table-title">{{wireType.wireType}}</div>
                     </div>
                 </div>
             </ion-col>
@@ -36,22 +36,22 @@
                         <ion-col size="5">
                             <ion-row>
                                 <ion-col>
-                                    <ion-input *ngIf="wireSize" class="ion-no-padding ion-text-center" type="text" value="3 1/2" readonly></ion-input>
+                                    <ion-input *ngIf="wireSize" class="ion-no-padding ion-text-center" type="text" value="{{wireType.results.val1}}" readonly></ion-input>
                                 </ion-col>
                             </ion-row>
                         </ion-col>
                     </ion-row>
-                    <ion-row class="ion-no-padding bord">
-                        <ion-col size="3">
+                    <ion-row class=" ion-no-padding bord ">
+                        <ion-col size="3 ">
                             THW, THW-2 THHW
                         </ion-col>
-                        <ion-col size="9">
+                        <ion-col size="9 ">
                             <ion-row>
                                 <ion-col>
                                     3 WIRES - INCHES
                                 </ion-col>
                                 <ion-col>
-                                    <ion-input *ngIf="wireSize" class="ion-no-padding ion-text-center" type="text" value="3 1/2" readonly></ion-input>
+                                    <ion-input *ngIf="wireSize " class="ion-no-padding ion-text-center " type="text " value="{{wireType.results.val2.val1}}" readonly></ion-input>
                                 </ion-col>
                             </ion-row>
                             <ion-row>
@@ -59,40 +59,40 @@
                                     3 Phase 4 Wire - INCHES
                                 </ion-col>
                                 <ion-col>
-                                    <ion-input *ngIf="wireSize" class="ion-no-padding ion-text-center" type="text" value="3 1/2" readonly></ion-input>
+                                    <ion-input *ngIf="wireSize " class="ion-no-padding ion-text-center " type="text " value="{{wireType.results.val2.val2}}" readonly></ion-input>
                                 </ion-col>
                             </ion-row>
                         </ion-col>
                     </ion-row>
-                    <ion-row class="ion-no-padding bord">
-                        <ion-col size="3">
+                    <ion-row class="ion-no-padding bord ">
+                        <ion-col size="3 ">
                             THHN, THWN, XHHW
                         </ion-col>
-                        <ion-col size="9">
+                        <ion-col size="9 ">
                             <div>
                                 <ion-row>
                                     <ion-col>
                                         3 WIRES - INCHES
                                     </ion-col>
                                     <ion-col>
-                                        <ion-input *ngIf="wireSize" class="ion-no-padding ion-text-center" type="text" value="3 1/2" readonly></ion-input>
+                                        <ion-input *ngIf="wireSize " class="ion-no-padding ion-text-center " type="text " value="{{wireType.results.val3}}" readonly></ion-input>
                                     </ion-col>
                                 </ion-row>
                             </div>
                         </ion-col>
                     </ion-row>
-                    <ion-row class="ion-no-padding bord">
-                        <ion-col size="3">
+                    <ion-row class="ion-no-padding bord ">
+                        <ion-col size="3 ">
                             THWN-2, XHHW-2
                         </ion-col>
-                        <ion-col size="9">
+                        <ion-col size="9 ">
                             <div>
                                 <ion-row>
                                     <ion-col>
                                         3 WIRES - INCHES
                                     </ion-col>
                                     <ion-col>
-                                        <ion-input *ngIf="wireSize" class="ion-no-padding ion-text-center" type="text" value="3 1/2" readonly></ion-input>
+                                        <ion-input *ngIf="wireSize " class="ion-no-padding ion-text-center " type="text " value="{{wireType.results.val4}}" readonly></ion-input>
                                     </ion-col>
                                 </ion-row>
                             </div>

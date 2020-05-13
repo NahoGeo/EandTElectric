@@ -44,7 +44,7 @@ export class SingUpPage implements OnInit {
     }
     if(!this.valid.validPassword(password)){
 
-      errorMessage +=`<p>-Password must contain more than 8 characters, a capital letter and an special character</p>`
+      errorMessage +=`<p>-Password must contain more than 8 characters, a number, a capital letter and an special character</p>`
       this.passwordError = true
     }
     if(confirmPassword !== password) {

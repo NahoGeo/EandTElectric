@@ -19,7 +19,7 @@ export class Tab1Page {
       path: ''
     },
     {
-      option: 'E-toolbox',
+      option: 'e-toolbox',
       icon: 'flash',
       path: '/e-toolbox'
     }
