@@ -2,8 +2,8 @@
     <ion-list>
         <ion-item>
             <ion-label position="floating">Position</ion-label>
-            <ion-input [(ngModel)]="position.position" type="text"></ion-input>
-            <ion-icon slot="end" clear-input="true" (click)="hidePosition()"></ion-icon>
+            <ion-input [(ngModel)]="position.position" clear-input="true" type="text"></ion-input>
+            <ion-icon slot="end" name="close" (click)="hidePosition()"></ion-icon>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Start Date</ion-label>

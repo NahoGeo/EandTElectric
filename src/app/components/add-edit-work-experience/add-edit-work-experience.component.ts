@@ -98,6 +98,9 @@ export class AddEditWorkExperienceComponent implements OnInit {
         errorMessage += `<p>End date can't be older or equal than start date</p>
                          <p>Note: If start date is equal to current date and end date is a future date, they both will be considerate as a same date.</p>`
       }
+      if (!data.endDate){
+        errorMessage += `<p>If you are not handling this position any more, plese select an end date, but if you keep in this position, check it as current</p>`
+      }
     }else {
       delete data.endDate
     }
