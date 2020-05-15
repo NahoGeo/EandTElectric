@@ -22,8 +22,8 @@
                     </ion-item>
                     <ion-text>
                         <p>{{education.degree}}</p>
-                        <p>{{education.startDate | date}} <span *ngIf="!education.current">to {{education.endDate | date}}</span>
-                            <span *ngIf="education.current">(current)</span>
+                        <p>{{education.startDate | date}} <span *ngIf="!education.current && education.endDate">to {{education.endDate | date}}</span>
+                            <span *ngIf="education.current || !education.endDate">(current)</span>
                         </p>
                     </ion-text>
                 </ion-label>

@@ -44,7 +44,9 @@
                     <h2>{{user.workExps[0] == undefine ? "Company's Name" :workExp.name}}</h2>
                     <ion-text *ngFor="let position of workExp.positions">
                         <p>{{user.workExps[0] == undefine ? "Position" :position.position}}</p>
-                        <p>{{user.workExps[0] == undefine ? "Start Date" :position.startDate | date}} <span *ngIf="!position.current">to {{user.workExps[0] == undefine ? "End Date" :position.endDate | date}}</span><span *ngIf="position.current">(current)</span></p>
+                        <p>{{user.workExps[0] == undefine ? "Start Date" :position.startDate | date}} <span *ngIf="!position.current && position.endDate">to {{user.workExps[0] == undefine ? "End Date" :position.endDate | date}}</span>
+                            <span *ngIf="position.current || !position.endDate">(current)</span>
+                        </p>
                     </ion-text>
                 </ion-label>
             </ion-item>
@@ -62,8 +64,8 @@
                     <h2>{{user.educations[0] == undefine ? "Institute's Name" :education.institute}}</h2>
                     <ion-text>
                         <p>{{user.educations[0] == undefine ? "Degree" :education.degree}}</p>
-                        <p>{{user.educations[0] == undefine ? "Start Date" :education.startDate | date}} <span *ngIf="!education.current">to {{user.educations[0] == undefine ? "End Date" :education.endDate | date}}</span>
-                            <span *ngIf="education.current">(current)</span>
+                        <p>{{user.educations[0] == undefine ? "Start Date" :education.startDate | date}} <span *ngIf="!education.current && education.endDate">to {{user.educations[0] == undefine ? "End Date" :education.endDate | date}}</span>
+                            <span *ngIf="education.current || !education.endDate">(current)</span>
                         </p>
                     </ion-text>
                 </ion-label>
