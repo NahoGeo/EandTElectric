@@ -92,7 +92,7 @@ export class PersonalInformationPage implements OnInit {
     }
     if (errorMessage.length > 0) {
       const alertMessage = await this.alertCtrl.create({      
-        header: 'Signing up Error',
+        header: 'Sign up Error',
         message: `${errorMessage}`,
         buttons: [{
           text: 'Ok',

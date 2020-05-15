@@ -22,7 +22,9 @@
                     </ion-item>
                     <ion-text *ngFor="let position of workExp.positions">
                         <p>{{position.position}}</p>
-                        <p>{{position.startDate | date}} <span *ngIf="!position.current">to {{position.endDate | date}}</span></p>
+                        <p>{{position.startDate | date}} <span *ngIf="!position.current">to {{position.endDate | date}}</span>
+                            <span *ngIf="position.current">(current)</span>
+                        </p>
                     </ion-text>
                 </ion-label>
             </ion-item>

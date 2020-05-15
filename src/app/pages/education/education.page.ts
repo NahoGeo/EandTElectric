@@ -24,6 +24,7 @@ export class EducationPage implements OnInit {
   }
   
   ionViewWillEnter() {
+    this.getUser()
     this.changeAddEducation()  
   }
 

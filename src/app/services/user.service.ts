@@ -30,7 +30,7 @@ export class UserService {
 
   constructor() { }
 
-  private oldId: number
+  private oldId: number = 0
 
   private lastId(data: any) {
     for (let i = 0; i < data.length; i++) {
@@ -133,8 +133,8 @@ export class UserService {
           institute: data.institute,
           degree: data.degree,
           startDate: data.startDate,
-          endDate: data.endDate,
-          current: data.current
+          current: data.current,
+          endDate: data.endDate
         }
       )
     }, 300)

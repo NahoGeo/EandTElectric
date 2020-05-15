@@ -3,7 +3,7 @@
         <ion-item>
             <ion-label position="floating">Position</ion-label>
             <ion-input [(ngModel)]="position.position" type="text"></ion-input>
-            <ion-icon slot="end" name="close" (click)="hidePosition()"></ion-icon>
+            <ion-icon slot="end" clear-input="true" (click)="hidePosition()"></ion-icon>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Start Date</ion-label>
@@ -19,11 +19,11 @@
         </ion-item>
         <ion-item>
             <ion-label position="floating">Description</ion-label>
-            <ion-textarea [(ngModel)]="position.description" type="text"></ion-textarea>
+            <ion-textarea [(ngModel)]="position.description" clear-input="true" type="text"></ion-textarea>
         </ion-item>
     </ion-list>
 </ion-card>
-<ion-item>
+<ion-item lines='none'>
     <ion-button block color="primary" style="margin: auto;" type="submit" (click)="save()">
         Save Position
     </ion-button>

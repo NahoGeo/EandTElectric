@@ -1,7 +1,7 @@
 <ion-card>
     <ion-item>
         <ion-label position="floating">Company</ion-label>
-        <ion-input [(ngModel)]="workExp.name" type="text"></ion-input>
+        <ion-input [(ngModel)]="workExp.name" clear-input="true" type="text"></ion-input>
     </ion-item>
     <ion-card-content>
         <ion-list>
@@ -14,7 +14,9 @@
                     <p>{{position.position}}</p>
                     <ion-icon *ngIf="!showPositionForm" slot="end" name='pencil' (click)="editPosition(position.id)"></ion-icon>
                 </ion-item>
-                <p>{{position.startDate | date}} <span *ngIf="!position.current">to {{position.endDate | date}}</span></p>
+                <p>{{position.startDate | date}} <span *ngIf="!position.current">to {{position.endDate | date}}</span>
+                    <span *ngIf="position.current">(current)</span>
+                </p>
             </ion-text>
         </ion-list>
     </ion-card-content>

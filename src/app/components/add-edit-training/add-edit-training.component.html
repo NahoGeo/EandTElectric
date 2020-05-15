@@ -2,11 +2,11 @@
     <ion-list>
         <ion-item>
             <ion-label position="floating">Title</ion-label>
-            <ion-input [(ngModel)]="training.title" type="text"></ion-input>
+            <ion-input [(ngModel)]="training.title" clear-input="true" type="text"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Awarded By</ion-label>
-            <ion-input [(ngModel)]="training.awardedBy" type="text"></ion-input>
+            <ion-input [(ngModel)]="training.awardedBy" clear-input="true" type="text"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Recognition Date</ion-label>
@@ -14,7 +14,7 @@
         </ion-item>
         <ion-item>
             <ion-label position="floating">Description</ion-label>
-            <ion-textarea [(ngModel)]="training.description"></ion-textarea>
+            <ion-textarea [(ngModel)]="training.description" clear-input="true"></ion-textarea>
         </ion-item>
     </ion-list>
 </ion-card>

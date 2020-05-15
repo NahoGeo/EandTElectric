@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkExp } from 'src/app/models/work-exp.model';
 import { Position } from 'src/app/models/position';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,7 +17,7 @@ export class WorkExperiencePage implements OnInit {
   addWorkExp: boolean = true
 
 
-  constructor(private loadingController: LoadingController, private userService: UserService) { }
+  constructor(private loadingController: LoadingController, private userService: UserService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.user = this.userService.getUser()
