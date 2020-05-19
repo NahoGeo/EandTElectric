@@ -14,21 +14,21 @@
 
     <ion-card class="ion-padding-top">
 
-        <ion-row class="ion-padding-horizontal">
+        <ion-row class="ion-padding-horizontal" *ngIf="user.profileImage">
             <ion-col size="12">
-                <ion-avatar *ngIf="user.profileImage">
+                <ion-avatar>
                     <img [src]="user.profileImage">
                 </ion-avatar>
             </ion-col>
         </ion-row>
 
         <ion-card-content>
-            <ion-item lines='none' class="ion-no-margin ion-no-padding">
+            <ion-item lines='none' class="ion-no-margin ion-no-padding ">
                 <ion-card-title>{{user.firstName == '' ? 'Full' : user.firstName}} {{user.lastName == '' ? 'Name' :user.lastName}}</ion-card-title>
                 <ion-icon slot="end" name="pencil" routerLink="/edit-profile"></ion-icon>
             </ion-item>
             <ion-card-subtitle>{{user.workExps[0] == undefine ? "Position" :user.workExps[0].positions[0].position}} in {{user.workExps[0] == undefine ? "Company's Name" :user.workExps[0].name}}</ion-card-subtitle>
-            <ion-label>{{user.workExps[0] == undefine ? "Company's Name" :user.workExps[0].name}} - {{user.educations[0] == undefine ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
+            <ion-label>{{user.workExps[0] == undefine ? "Company's Name " :user.workExps[0].name}} - {{user.educations[0] == undefine ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
             <ion-label>{{user.address.city == '' ? "City" : user.address.city}}, {{user.address.state == '' ? "State" : user.address.state}}, {{user.address.country == '' ? "Country" : user.address.country}}</ion-label>
         </ion-card-content>
     </ion-card>
@@ -85,7 +85,6 @@
                     <ion-text>
                         <p>{{training.awardedBy}}</p>
                         <p>{{training.recognitionDate | date}}</p>
-                        <p>{{training.description}}</p>
                     </ion-text>
                 </ion-label>
             </ion-item>

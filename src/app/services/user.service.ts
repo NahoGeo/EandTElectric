@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { set, get } from 'src/app/services/storage'
 import { User } from '../models/user';
 import { Education } from '../models/education';
 import { Training } from '../models/training';
@@ -9,6 +10,7 @@ import { WorkExp } from '../models/work-exp.model';
   providedIn: 'root'
 })
 export class UserService {
+
   user: User= {
     profileImage: '',
     firstName: '',
@@ -28,7 +30,26 @@ export class UserService {
     trainings: []
   }
 
-  constructor() { }
+
+  constructor() {
+    this.setUser()
+  }
+
+  async setUser() {
+    const user = await get('user');
+    if (!user) {
+      this.saveUser()
+    }
+    this.setUserValues()
+  }
+
+  saveUser() {
+    set('user', this.user)
+  }
+
+  async setUserValues() {
+    this.user = await get('user')
+  }
 
   private oldId: number = 0
 
@@ -45,18 +66,22 @@ export class UserService {
   }
 
   getUser() {
+    this.setUserValues()
     return this.user
   }
 
   getEducationById(id: string) {
+    this.setUserValues()
     return this.user.educations.find(education => {return education.id === id})
   }
 
   getTrainingById(id: string) {
+    this.setUserValues()
     return this.user.trainings.find(training => {return training.id === id})
   }
 
   getWorkExpById(id: string) {
+    this.setUserValues()
     return this.user.workExps.find(workExp => {return workExp.id === id})
   }
 
@@ -72,6 +97,8 @@ export class UserService {
     this.user.address.state = data.address.state
     this.user.address.zipCode = data.address.zipCode
     this.user.address.country = data.address.country
+
+    this.saveUser()
   }
 
   editEducation(id: string, data: Education) {
@@ -85,6 +112,8 @@ export class UserService {
         education.current = data.current
       }
     })
+
+    this.saveUser()
   }
 
   editTraining(id: string, data: Training) {
@@ -96,6 +125,8 @@ export class UserService {
         training.description = data.description
       }
     })
+
+    this.saveUser()
   }
 
   editWorkExp(id: string, data: WorkExp) {
@@ -104,6 +135,8 @@ export class UserService {
         workExp.name = data.name
       }
     })
+
+    this.saveUser()
   }
 
   editPosition(idWE: string, idP: string, data: Position) {
@@ -120,6 +153,8 @@ export class UserService {
         })
       }
     })
+
+    this.saveUser()
   }
 
   addEducation(data: Education) {
@@ -137,6 +172,7 @@ export class UserService {
           endDate: data.endDate
         }
       )
+      this.saveUser()
     }, 300)
   }
 
@@ -154,6 +190,7 @@ export class UserService {
           description: data.description
         }
       )
+      this.saveUser()
     }, 300)
   }
 
@@ -169,6 +206,7 @@ export class UserService {
           positions: data.positions
         }
       )
+      this.saveUser()
     }, 300)
   }
 
@@ -192,6 +230,7 @@ export class UserService {
               description: data.description
             }
           )
+          this.saveUser()
         }
       }
     }, 300)

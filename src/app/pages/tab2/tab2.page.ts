@@ -17,13 +17,12 @@ export class Tab2Page implements OnInit {
   ngOnInit(){
     this.getUser()
   }
-
+  
   getUser() {
-    this.user = this.userService.getUser()
+    this.user =this.userService.getUser()
   }
-
+  
   ionViewWillEnter() {
-    this.getUser()  
+    this.getUser()
   }
-
 }

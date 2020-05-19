@@ -10,15 +10,14 @@ import { Position } from 'src/app/models/position';
   styleUrls: ['./edit-work-experience.page.scss'],
 })
 export class EditWorkExperiencePage implements OnInit {
-
   workExp: WorkExp
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(paramMap => {
+  async ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(async paramMap => {
       const Id = paramMap.get('Id')
-      this.workExp = this.userService.getWorkExpById(Id)
+      this.workExp = await this.userService.getWorkExpById(Id)
     })
   }
 

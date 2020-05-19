@@ -1,56 +1,85 @@
 import { Injectable } from '@angular/core';
+import { Plugins } from '@capacitor/core'
+
+const { Storage } = Plugins
 
 @Injectable({
   providedIn: 'root'
 })
 export class DarkModeService {
 
-  darkMode: boolean = false;
+  darkMode: boolean = false
 
   constructor() {
-    localStorage.setItem('darkMode', `${this.darkMode}`)
-    /* this.setStatus() */
-    this.darkMode = this.getStatus()
-  }
-
-  /* setStatus() {
-    if (!localStorage.getItem('darkMode')) {
-      localStorage.setItem('darkMode', `${this.darkMode}`)
-    }
-  } */
-
-  getStatus() {
-    let status = ()=>{
-      if (localStorage.getItem('darkMode') === 'false') {
-        return false
-      }else {
-        return true
+    this.setStatus()
+    this.getStatus().then(
+      value => {
+        this.darkMode = value
       }
-    }
-
-    return status()
+    )
+    this.setDarkMode()
   }
 
-  changeModeSwitch() {
-    try {
-      switch (localStorage.getItem('darkMode')) {
-        case 'false':
-          localStorage.setItem('darkMode', 'true')
+  async setStatus() {
+    const { value } = await Storage.get({key:'darkMode'})
+    
+    if (!value) {
+      this.saveStatus()
+    }
+  }
+
+  setDarkMode() {
+    this.getStatus().then(
+      status => {
+        if (status === true) {
           document.body.classList.add('dark')
-          break
-
-        case 'true':
-          localStorage.setItem('darkMode', 'false')
+        }else {
           document.body.classList.remove('dark')
-          break
-
-        default:
-          console.log('Error: ' + localStorage.getItem('darkMode'))
-          break;
+        }
       }
-      return this.getStatus()
-    } catch {
-      alert('Dark Mode Fail')
+    )
+  }
+
+  async saveStatus() {
+    await Storage.set({key: 'darkMode', value: `${this.darkMode}`})
+  }
+
+  async getStatus() {
+    let status: boolean
+    let {value} = await Storage.get({key:'darkMode'})
+
+    if ( value == 'true') {
+      status = true
     }
+    if ( value == 'false') {
+      status = false
+    }
+    
+    return status
+  }
+
+  async changeModeSwitch() {
+    return this.getStatus().then(
+      async status=>{
+        switch (status) {
+          case false:
+            document.body.classList.add('dark')
+            this.darkMode = true
+            this.saveStatus()
+            break
+    
+          case true:
+            document.body.classList.remove('dark')
+            this.darkMode = false
+            this.saveStatus()
+            break
+    
+          default:
+            console.log('Error: ' + status)
+            break;
+        }
+        return await this.getStatus()
+      }
+    )
   }
 }

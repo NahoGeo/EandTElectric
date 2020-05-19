@@ -15,12 +15,17 @@ export class TrainingPage implements OnInit {
 
   constructor( private userService: UserService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.getUser()
+  }
+
+  getUser() {
     this.user = this.userService.getUser()
   }
 
   ionViewWillEnter() {
-    this.changeAddTraining()  
+    this.getUser()
+    this.changeAddTraining()
   }
 
   changeAddTraining() {

@@ -12,16 +12,19 @@ export class Tab3Page {
   darkMode: boolean
 
   constructor(private router: Router, private darkOption: DarkModeService) {
-    let status = darkOption.getStatus()
-    this.darkMode = status
+    this.getStatus()
+  }
+
+  async getStatus() {
+    this.darkMode = await this.darkOption.getStatus()
   }
 
   logOut() {
     this.router.navigate(['login'])
   }
 
-  changeDarkMode() {
-    this.darkMode = this.darkOption.changeModeSwitch()
+  async changeDarkMode() {
+    this.darkMode = await this.darkOption.changeModeSwitch()
   }
 
 }

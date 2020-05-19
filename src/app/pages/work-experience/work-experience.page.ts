@@ -20,10 +20,15 @@ export class WorkExperiencePage implements OnInit {
   constructor(private loadingController: LoadingController, private userService: UserService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.getUser()
+  }
+
+  getUser() {
     this.user = this.userService.getUser()
   }
 
   ionViewWillEnter() {
+    this.getUser()
     this.changeAddWorkExp()  
   }
 

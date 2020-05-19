@@ -16,8 +16,8 @@ export class EditEducationPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      const Id = paramMap.get('Id')
-      this.education = this.userService.getEducationById(Id)
+        const Id = paramMap.get('Id')
+        this.education = this.userService.getEducationById(Id)
     })
   }
 
