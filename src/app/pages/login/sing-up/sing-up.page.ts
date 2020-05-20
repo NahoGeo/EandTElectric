@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ValidatorService } from 'src/app/services/validator.service';
+import { Profile } from 'src/app/models/profile-form.model';
+import { UserService } from 'src/app/services/user.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-sing-up',
@@ -9,6 +12,10 @@ import { ValidatorService } from 'src/app/services/validator.service';
   styleUrls: ['./sing-up.page.scss'],
 })
 export class SingUpPage implements OnInit {
+  user: Profile = {
+    email: '',
+    password: ''
+  }
 
   emailError: boolean = false
   passwordError: boolean = false
@@ -18,12 +25,12 @@ export class SingUpPage implements OnInit {
   goodPassword: boolean = false
   strongPassword: boolean = false
 
-  constructor(private router: Router, private alertCtrl: AlertController, private valid: ValidatorService) { }
+  constructor(private router: Router, private alertCtrl: AlertController, private valid: ValidatorService, private userService: UserService, private auth: AuthenticationService) { }
 
   ngOnInit() {
   }
 
-  async signUp(email, password, confirmPassword) {
+  async signUp(email: any, password: any, confirmPassword: any) {
     this.weakPassword = false
     this.goodPassword = false
     this.strongPassword = false
@@ -63,9 +70,35 @@ export class SingUpPage implements OnInit {
       return await alertMessage.present()
     }
 
+    const alertMessage = await this.alertCtrl.create({
+      
+      header: 'Email Confirmation',
+      message: "<p>Enter the confirmation key<br>we sent to your email</p>",
+      inputs: [
+        {
+          name: 'Confirmation Key',
+          type: 'text',
+          placeholder: 'Key'
+        }
+      ],
+      buttons: [
+      {
+        text: 'Done',
+        handler: ()=> {
+          this.user.email = email
+          this.user.password = password
+          this.userService.newSignInUser(this.user)
+          this.auth.setLogIn()
+          this.router.navigate(['tabs/tab1'])
+        }
+      }
+    ]
+    })
+
+    return await alertMessage.present()
     
 
-    this.router.navigate(['login/create-new-account/email-confirmation'])
+    //this.router.navigate(['login/create-new-account/email-confirmation'])
     
   }
 

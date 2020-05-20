@@ -7,10 +7,6 @@ const routes: Routes = [
   {
     path: '',
     component: SingUpPage
-  },
-  {
-    path: 'email-confirmation',
-    loadChildren: () => import('./email-confirmation/email-confirmation.module').then( m => m.EmailConfirmationPageModule)
   }
 ];
 

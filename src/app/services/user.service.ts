@@ -16,6 +16,7 @@ export class UserService {
     firstName: '',
     lastName: '',
     email: '',
+    password: '',
     phoneNumber: '',
     celphoneNumber: '',
     address: {
@@ -64,8 +65,14 @@ export class UserService {
     return this.oldId + 1
   }
 
+  newSignInUser(data: any) {
+    this.user.email = data.email
+    this.user.password = data.password
+    
+    this.saveUser()
+  }
+
   getUser() {
-    this.setUserValues()
     return this.user
   }
 

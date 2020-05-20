@@ -11,7 +11,7 @@
 
 <ion-content [fullscreen]="true">
     <ion-list>
-        <ion-card *ngFor="let option of options" routerLink='{{option.path}}'>
+        <ion-card *ngFor="let option of options" (click)='checkAuth(option.path)'>
             <ion-item lines="full">
                 <ion-icon name="{{option.icon}}"></ion-icon>
                 <ion-label class="ion-text-center">{{option.option}}</ion-label>

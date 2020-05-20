@@ -1,11 +1,12 @@
 import { Address } from './address';
 
 export interface Profile {
-    profileImage: any
-    firstName: string
-    lastName: string
+    profileImage?: any
+    firstName?: string
+    lastName?: string
     email: string
-    phoneNumber: string
-    celphoneNumber: string
-    address: Address
+    password?: string
+    phoneNumber?: string
+    celphoneNumber?: string
+    address?: Address
 }

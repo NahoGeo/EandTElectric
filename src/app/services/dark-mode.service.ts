@@ -36,21 +36,13 @@ export class DarkModeService {
   }
 
   saveStatus() {
-    set('darkMode', `${this.darkMode}`)
+    set('darkMode', this.darkMode)
   }
 
   async getStatus() {
-    let status: boolean
-    let value = await get('darkMode')
-
-    if ( value == 'true') {
-      status = true
-    }
-    if ( value == 'false') {
-      status = false
-    }
+    this.darkMode = await get('darkMode')
     
-    return status
+    return this.darkMode
   }
 
   async changeModeSwitch() {

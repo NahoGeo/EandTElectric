@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from 'src/app/services/user.service'
 import { DarkModeService } from 'src/app/services/dark-mode.service'
-import { from } from 'rxjs';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private userService: UserService,
-    private darkMode: DarkModeService
+    private darkMode: DarkModeService,
+    private auth: AuthenticationService
   ) {
     this.initializeApp();
   }
@@ -29,6 +30,7 @@ export class AppComponent {
       this.splashScreen.hide();
       this.userService.setUser()
       this.darkMode.setStatus()
+      this.auth.setIfLogInOrOut()
     });
   }
 }

@@ -7,9 +7,10 @@ export interface User {
     profileImage: any
     firstName: string
     lastName: string
-    email: string,
-    phoneNumber: string,
-    celphoneNumber: string,
+    email: string
+    password: string
+    phoneNumber: string
+    celphoneNumber: string
     address: Address
     educations: Array<Education>
     workExps: Array<WorkExp>

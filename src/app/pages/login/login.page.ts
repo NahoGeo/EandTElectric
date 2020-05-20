@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router'
 import { AlertController } from '@ionic/angular';
+import { ValidatorService } from 'src/app/services/validator.service';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/user';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +13,76 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(private router: Router, private alertCtrl: AlertController) { }
+  user: User
+
+  constructor(private router: Router, private alertCtrl: AlertController, private verify: ValidatorService, private userService: UserService, private auth: AuthenticationService) { }
 
   ngOnInit() {
+    this.getUser()
   }
 
-  logIn(_email, _passeord) {
-    this.router.navigate(['/tabs/tab1'])
+  getUser() {
+    this.user = this.userService.getUser()
+  }
+
+  ionViewWillEnter() {
+    this.getUser()
+  }
+
+  async logIn(email: any, password: any) {
+    email = email.value.trim()
+    password = password.value.trim()
+    let errorMessage = ''
+
+    if (!this.verify.isEmailAddress(email)) {
+      errorMessage += `<p>Provide a valid email address</p>`
+    }
+    if (!password) {
+      errorMessage += `<p>Write your password</p>`
+    }
+
+    if (errorMessage.length > 0) {
+      const alertMessage = await this.alertCtrl.create({
+      
+        header: 'Send temporary password',
+        message: `${errorMessage}`,
+        buttons: [{
+          text: 'Ok, I will',
+          role: 'cancel'
+        }]
+      })
+  
+      return await alertMessage.present()
+    }
+
+    if(email && password) {
+      if(email === this.user.email && password === this.user.password) {
+        this.auth.setLogIn()
+        this.router.navigate(['/tabs/tab1'])
+      }else {
+        const alertMessage = await this.alertCtrl.create({
+      
+          header: 'Unauthorized User',
+          message: "New here?",
+          buttons: [{
+            text: 'No',
+            role: 'cancel'
+          },{
+            text: 'Yes',
+            handler:()=> {
+              this.router.navigate(['login/create-new-account'])
+            }
+          }]
+        })
+    
+        return await alertMessage.present()
+      }
+    }
   }
 
   async restorePassword(email: any) {
     email = email.value.trim()
-    if (email === "") {
+    if (!email) {
       const alertMessage = await this.alertCtrl.create({
       
         header: 'Send temporary password',

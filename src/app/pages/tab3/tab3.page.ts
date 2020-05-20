@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DarkModeService } from 'src/app/services/dark-mode.service';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-tab3',
@@ -10,16 +11,27 @@ import { DarkModeService } from 'src/app/services/dark-mode.service';
 export class Tab3Page {
 
   darkMode: boolean
+  isLogIn: boolean
 
-  constructor(private router: Router, private darkOption: DarkModeService) {
+  constructor(private router: Router, private darkOption: DarkModeService, private auth: AuthenticationService) {
     this.getStatus()
+    this.isLogIn = this.auth.isLogged()
   }
 
   async getStatus() {
     this.darkMode = await this.darkOption.getStatus()
   }
 
+  ionViewWillEnter() {
+    this.isLogIn = this.auth.isLogged()
+  }
+
+  logIn() {
+    this.router.navigate(['login'])
+  }
+
   logOut() {
+    this.auth.setLogOut()
     this.router.navigate(['login'])
   }
 
