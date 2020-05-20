@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Training } from 'src/app/models/training';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-training',
@@ -18,9 +19,21 @@ export class AddTrainingPage implements OnInit {
     description: ''
   }
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.showNote()
+  }
+
+  async showNote() {
+    const alert = await this.alertCtrl.create({
+      header: 'Notes:',
+      message: `<p>Please add your trainings from newer to older</p>
+                <p>Only a maximun of five fields</p>`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   addTraining(data: any) {

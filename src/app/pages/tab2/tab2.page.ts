@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -11,7 +12,7 @@ export class Tab2Page implements OnInit {
 
   user: User
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private loadingCtrl: LoadingController) {
   }
 
   ngOnInit(){
@@ -25,4 +26,15 @@ export class Tab2Page implements OnInit {
   ionViewWillEnter() {
     this.getUser()
   }
+
+  /* async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      message: 'Please wait...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!', role, data);
+  } */
 }

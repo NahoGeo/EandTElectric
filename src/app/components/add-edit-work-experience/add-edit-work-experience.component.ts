@@ -31,18 +31,6 @@ export class AddEditWorkExperienceComponent implements OnInit {
   constructor(private router: Router, private alertCtrl: AlertController) { }
 
   ngOnInit() {
-    this.showNote()
-  }
-  
-  async showNote() {
-    const alert = await this.alertCtrl.create({
-      header: 'Notes:',
-      message: `<p>Please add your work experience from newer to older, at the same way with your positions in each experience</p>
-                <p>Only a maximun of five fields</p>`,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   changeAddPosition() {
@@ -106,7 +94,7 @@ export class AddEditWorkExperienceComponent implements OnInit {
     }
     if (errorMessage.length > 0) {
       const alertMessage = await this.alertCtrl.create({
-        header: 'Sign up Error',
+        header: 'Instructions:',
         message: `${errorMessage}`,
         buttons: [{
           text: 'Ok',

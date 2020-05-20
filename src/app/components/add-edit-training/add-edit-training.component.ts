@@ -15,18 +15,6 @@ export class AddEditTrainingComponent implements OnInit {
   constructor(private alertCtrl: AlertController) { }
 
   ngOnInit() {
-    this.showNote()
-  }
-
-  async showNote() {
-    const alert = await this.alertCtrl.create({
-      header: 'Notes:',
-      message: `<p>Please add your trainings from newer to older</p>
-                <p>Only a maximun of five fields</p>`,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
   async saveChanges() {
@@ -46,7 +34,7 @@ export class AddEditTrainingComponent implements OnInit {
     }
     if (errorMessage.length > 0) {
       const alertMessage = await this.alertCtrl.create({
-        header: 'Sign up Error',
+        header: 'Instructions:',
         message: `${errorMessage}`,
         buttons: [{
           text: 'Ok',

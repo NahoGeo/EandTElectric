@@ -32,7 +32,6 @@ export class UserService {
 
 
   constructor() {
-    this.setUser()
   }
 
   async setUser() {

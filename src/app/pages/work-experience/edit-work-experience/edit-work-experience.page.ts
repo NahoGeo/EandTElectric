@@ -14,10 +14,10 @@ export class EditWorkExperiencePage implements OnInit {
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
-  async ngOnInit() {
-    this.activatedRoute.paramMap.subscribe(async paramMap => {
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
       const Id = paramMap.get('Id')
-      this.workExp = await this.userService.getWorkExpById(Id)
+      this.workExp = this.userService.getWorkExpById(Id)
     })
   }
 

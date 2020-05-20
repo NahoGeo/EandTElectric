@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WorkExp } from 'src/app/models/work-exp.model';
 import { UserService } from 'src/app/services/user.service';
-import { Position } from 'src/app/models/position';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-add-work-experience',
@@ -16,9 +16,21 @@ export class AddWorkExperiencePage implements OnInit {
     positions: []
   }
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.showNote()
+  }
+
+  async showNote() {
+    const alert = await this.alertCtrl.create({
+      header: 'Notes:',
+      message: `<p>Please add your work experience from newer to older, at the same way with your positions in each experience</p>
+                <p>Only a maximun of five fields</p>`,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   addWorkExp(data: WorkExp) {
