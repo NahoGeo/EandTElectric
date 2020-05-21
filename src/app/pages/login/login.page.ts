@@ -35,19 +35,19 @@ export class LoginPage implements OnInit {
     let errorMessage = ''
 
     if (!this.verify.isEmailAddress(email)) {
-      errorMessage += `<p>Provide a valid email address</p>`
+      errorMessage += `<p>Provide a valid email address.</p>`
     }
     if (!password) {
-      errorMessage += `<p>Write your password</p>`
+      errorMessage += `<p>Write your password.</p>`
     }
 
     if (errorMessage.length > 0) {
       const alertMessage = await this.alertCtrl.create({
       
-        header: 'Send temporary password',
+        header: 'Sign-in Error',
         message: `${errorMessage}`,
         buttons: [{
-          text: 'Ok, I will',
+          text: 'Ok',
           role: 'cancel'
         }]
       })
@@ -88,7 +88,7 @@ export class LoginPage implements OnInit {
         header: 'Send temporary password',
         message: "Write your email",
         buttons: [{
-          text: 'Ok, I will',
+          text: 'Ok',
           role: 'cancel'
         }]
       })
@@ -102,10 +102,10 @@ export class LoginPage implements OnInit {
       message: `<p>We will send a temporary password to:</p>
                 <p>${email}</p>`,
       buttons: [{
-        text: 'No, cancel',
+        text: 'Cancel',
         role: 'cancel'
       },{
-        text:'Yes, send it',
+        text:'Send',
         handler: ()=> {
           console.log(`Sending an email message to: ${email}`);
         }

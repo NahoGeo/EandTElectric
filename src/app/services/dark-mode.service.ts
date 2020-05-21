@@ -6,67 +6,51 @@ import { get, set } from 'src/app/services/storage'
 })
 export class DarkModeService {
 
-  darkMode: boolean = false
+  darkMode: boolean
 
-  constructor() {
-  }
+  constructor() {}
 
   async setStatus() {
     const value = await get('darkMode')
     
     if (!value) {
-      this.saveStatus()
+      this.setDarkModeOff()
+    }else {
+      this.setDarkModeOn()
     }
-
-    this.darkMode = await this.getStatus()
-
-    this.setDarkMode()
   }
 
-  setDarkMode() {
-    this.getStatus().then(
-      status => {
-        if (status === true) {
-          document.body.classList.add('dark')
-        }else {
-          document.body.classList.remove('dark')
-        }
-      }
-    )
+  setDarkModeOn() {
+    set('darkMode', true)
+    this.darkMode = true
+    document.body.classList.add('dark')
   }
 
-  saveStatus() {
-    set('darkMode', this.darkMode)
+  setDarkModeOff() {
+    set('darkMode', false)
+    this.darkMode = false
+    document.body.classList.remove('dark')
   }
 
-  async getStatus() {
-    this.darkMode = await get('darkMode')
-    
+  getStatus() {
     return this.darkMode
   }
 
-  async changeModeSwitch() {
-    return this.getStatus().then(
-      async status=>{
-        switch (status) {
-          case false:
-            document.body.classList.add('dark')
-            this.darkMode = true
-            this.saveStatus()
-            break
-    
-          case true:
-            document.body.classList.remove('dark')
-            this.darkMode = false
-            this.saveStatus()
-            break
-    
-          default:
-            console.log('Error: ' + status)
-            break;
-        }
-        return await this.getStatus()
-      }
-    )
+  changeModeSwitch() {
+
+    switch (this.darkMode) {
+      case false:
+        this.setDarkModeOn()
+        break
+
+      case true:
+        this.setDarkModeOff()
+        break
+
+      default:
+        console.log('Error: ' + this.darkMode)
+        break;
+    }
+    return this.darkMode
   }
 }

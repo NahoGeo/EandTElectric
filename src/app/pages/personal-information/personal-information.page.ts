@@ -59,36 +59,36 @@ export class PersonalInformationPage implements OnInit {
     let errorMessage = ''
     
     if(!firstName) {
-      errorMessage += `<p>-First name is required</p>`
+      errorMessage += `<p>First name is required.</p>`
     }
     if(!lastName) {
-      errorMessage += `<p>-Last name is required</p>`
+      errorMessage += `<p>Last name is required.</p>`
     }
     if(!this.valid.isEmailAddress(email)) {
-      errorMessage += `<p>-A valid email is required</p>`
+      errorMessage += `<p>A valid email is required.</p>`
     }
     if(phoneNumber != '') {
       if (!this.valid.isPhone(phoneNumber)) {
-        errorMessage += `<p>-A valid Phone number is required</p>`
+        errorMessage += `<p>A valid Phone number is required.</p>`
       }
     }
     if(!celphoneNumber || !this.valid.isPhone(celphoneNumber)) {
-      errorMessage += `<p>-A valid celphone number is required</p>`
+      errorMessage += `<p>A valid celphone number is required.</p>`
     }
     if(!street) {
-      errorMessage += `<p>-Street is required</p>`
+      errorMessage += `<p>Street is required.</p>`
     }
     if (!city) {
-      errorMessage += `<p>-City is required</p>`
+      errorMessage += `<p>City is required.</p>`
     }
     if (!state) {
-      errorMessage += `<p>-State is required</p>`
+      errorMessage += `<p>State is required.</p>`
     }
     if (!zipCode) {
-      errorMessage += `<p>-Zip code is required</p>`
+      errorMessage += `<p>Zip code is required.</p>`
     }
     if(!country) {
-      errorMessage += `<p>-Country is required</p>`
+      errorMessage += `<p>Country is required.</p>`
     }
     if (errorMessage.length > 0) {
       const alertMessage = await this.alertCtrl.create({      

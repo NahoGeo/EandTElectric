@@ -25,8 +25,8 @@ export class AddWorkExperiencePage implements OnInit {
   async showNote() {
     const alert = await this.alertCtrl.create({
       header: 'Notes:',
-      message: `<p>Please add your work experience from newer to older, at the same way with your positions in each experience</p>
-                <p>Only a maximun of five fields</p>`,
+      message: `<p>Please add your work experience from newer to older, at the same way with your positions in each experience.</p>
+                <p>Only a maximun of five fields.</p>`,
       buttons: ['OK']
     });
 

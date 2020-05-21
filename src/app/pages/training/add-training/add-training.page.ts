@@ -28,8 +28,8 @@ export class AddTrainingPage implements OnInit {
   async showNote() {
     const alert = await this.alertCtrl.create({
       header: 'Notes:',
-      message: `<p>Please add your trainings from newer to older</p>
-                <p>Only a maximun of five fields</p>`,
+      message: `<p>Please add your trainings from newer to older.</p>
+                <p>Only a maximun of five fields.</p>`,
       buttons: ['OK']
     });
 

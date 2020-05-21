@@ -42,20 +42,20 @@ export class SingUpPage implements OnInit {
     
     if(!this.valid.isEmailAddress(email)) {
       if (email == '') {
-        errorMessage += `<p>-Write an email</p>`
+        errorMessage += `<p>Write an email.</p>`
         this.emailError = true
       }else{
-        errorMessage += `<p>-Write a valid email</p>`
+        errorMessage += `<p>Write a valid email.</p>`
         this.emailError = true
       }
     }
     if(!this.valid.validPassword(password)){
 
-      errorMessage +=`<p>-Password must contain more than 8 characters, a number, a capital letter and an special character</p>`
+      errorMessage +=`<p>Password must contain more than 8 characters, a number, a capital letter and an special character.</p>`
       this.passwordError = true
     }
     if(confirmPassword !== password) {
-      errorMessage +=`<p>-Passwords don't match</p>`
+      errorMessage +=`<p>Passwords don't match.</p>`
       this.confirmError = true
     }
     if (errorMessage.length > 0){
@@ -73,7 +73,7 @@ export class SingUpPage implements OnInit {
     const alertMessage = await this.alertCtrl.create({
       
       header: 'Email Confirmation',
-      message: "<p>Enter the confirmation key<br>we sent to your email</p>",
+      message: "<p>Enter the confirmation key<br>we sent to your email.</p>",
       inputs: [
         {
           name: 'Confirmation Key',

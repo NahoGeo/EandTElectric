@@ -18,8 +18,8 @@ export class Tab3Page {
     this.isLogIn = this.auth.isLogged()
   }
 
-  async getStatus() {
-    this.darkMode = await this.darkOption.getStatus()
+  getStatus() {
+    this.darkMode = this.darkOption.getStatus()
   }
 
   ionViewWillEnter() {
@@ -35,8 +35,9 @@ export class Tab3Page {
     this.router.navigate(['login'])
   }
 
-  async changeDarkMode() {
-    this.darkMode = await this.darkOption.changeModeSwitch()
+  changeDarkMode() {
+    this.darkMode = this.darkOption.changeModeSwitch()
+    console.log(this.darkMode)
   }
 
 }
