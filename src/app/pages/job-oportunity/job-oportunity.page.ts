@@ -84,7 +84,7 @@ export class JobOportunityPage implements OnInit {
   async showNote() {
     let note = await this.alertCtrl.create({
       header: 'Note:',
-      message: 'We presente various positions options to you.<br>You can select only one of them.',
+      message: 'We present a list of position options to you.<br>You can select only one of them.',
       buttons: [{
         text: 'ok',
         role: 'cancel'
@@ -113,7 +113,7 @@ export class JobOportunityPage implements OnInit {
   async applicationInProcess(position) {
     let note = await this.alertCtrl.create({
       header: 'What is next?:',
-      message: `You already applyed for the position "${position}"<br>Please wait and we call you as soon as posible.`,
+      message: `You have already applied for the position "${position}"<br>Please wait and we will contact you as soon as posible.`,
       buttons: [{
         text: 'ok',
         role: 'cancel'
