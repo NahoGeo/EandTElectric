@@ -16,8 +16,8 @@
 
         <ion-row class="ion-padding-horizontal" *ngIf="user.profileImage">
             <ion-col size="12">
-                <ion-avatar>
-                    <img [src]="user.profileImage">
+                <ion-avatar class="ion-no-margin">
+                    <ion-img [src]="user.profileImage"></ion-img>
                 </ion-avatar>
             </ion-col>
         </ion-row>

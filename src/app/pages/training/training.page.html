@@ -4,21 +4,18 @@
             <ion-back-button defaultHref="/tabs/tab2"></ion-back-button>
         </ion-buttons>
         <ion-title>Training</ion-title>
-        <ion-item *ngIf="addTraining" slot="end" lines='none'>
-            <ion-icon name='add' routerLink="add-training"></ion-icon>
-        </ion-item>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card *ngFor="let training of user.trainings">
         <ion-card-content class="ion-no-padding">
-            <ion-item *ngFor="let training of user.trainings">
+            <ion-item>
                 <ion-icon name="medal" style="margin-right: 10px;"></ion-icon>
                 <ion-label class="ion-text-wrap">
                     <ion-item class="ion-no-padding" lines='none'>
                         <h2>{{training.title}}</h2>
-                        <ion-icon slot="end" name="pencil" [routerLink]="['edit-training', training.id]"></ion-icon>
+                        <ion-icon slot="end" name="Pencil" [routerLink]="['edit-training', training.id]"></ion-icon>
                     </ion-item>
                     <ion-text>
                         <p>{{training.awardedBy}}</p>
@@ -29,4 +26,9 @@
             </ion-item>
         </ion-card-content>
     </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button routerLink="add-training">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

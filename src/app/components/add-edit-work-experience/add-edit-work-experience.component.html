@@ -12,7 +12,7 @@
             <ion-label position="floating">Start Date</ion-label>
             <ion-datetime [(ngModel)]="workExp.startDate" display-format="MM/DD/YYYY"></ion-datetime>
         </ion-item>
-        <ion-item *ngIf="!currentSetted">
+        <ion-item lines='full' *ngIf="!currentSetted">
             <ion-label>Current</ion-label>
             <ion-checkbox slot="end" [(ngModel)]="workExp.current"></ion-checkbox>
         </ion-item>

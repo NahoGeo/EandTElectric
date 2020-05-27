@@ -11,5 +11,12 @@
 </ion-header>
 
 <ion-content>
-
+    <ion-list>
+        <ion-card *ngFor="let option of options" (click)='blockSelectOption(option.option)' class="ion-block" disabled='{{alldisabled}}'>
+            <ion-item lines="none">
+                <ion-icon name="{{option.icon}}"></ion-icon>
+                <ion-label class="ion-text-center">{{option.option}}</ion-label>
+            </ion-item>
+        </ion-card>
+    </ion-list>
 </ion-content>

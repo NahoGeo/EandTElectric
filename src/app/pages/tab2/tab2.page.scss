@@ -2,6 +2,12 @@ ion-content ion-toolbar {
     --background: translucent;
 }
 
+ion-avatar {
+    height: 100px;
+    width: 100px;
+    margin: auto;
+}
+
 ion-card {
     padding-top: 15px;
     border-radius: 20px;
