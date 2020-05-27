@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EducationPage } from './education.page';
+import { AuthGuard } from 'src/app/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -10,11 +11,13 @@ const routes: Routes = [
   },
   {
     path: 'edit-education/:Id',
-    loadChildren: () => import('./edit-education/edit-education.module').then( m => m.EditEducationPageModule)
+    loadChildren: () => import('./edit-education/edit-education.module').then( m => m.EditEducationPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'add-education',
-    loadChildren: () => import('./add-education/add-education.module').then( m => m.AddEducationPageModule)
+    loadChildren: () => import('./add-education/add-education.module').then( m => m.AddEducationPageModule),
+    canActivate: [AuthGuard]
   }
 ];
 

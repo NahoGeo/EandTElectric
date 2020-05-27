@@ -69,7 +69,35 @@ export class SingUpPage implements OnInit {
       })
       return await alertMessage.present()
     }
+    if(this.userService.user.email) {
+      const alertMessage = await this.alertCtrl.create({
+      
+        header: 'Warning',
+        message: `<p>There is a profile already saved.<br>If you continue this profile will be delete</p>`,
+        buttons: [
+          {
+            text: 'Cancel',
+            handler: ()=> {
+              this.router.navigate(['login'])
+            }
+          },
+          {
+            text: 'continue',
+            handler:()=> {
+              this.emailConfirmation(email, password)
+            }
+          }
+        ]
+      })
+  
+      return await alertMessage.present()
+    }
 
+    this.emailConfirmation(email, password)
+    
+  }
+
+  async emailConfirmation(email, password) {
     const alertMessage = await this.alertCtrl.create({
       
       header: 'Email Confirmation',
@@ -85,10 +113,11 @@ export class SingUpPage implements OnInit {
       {
         text: 'Done',
         handler: ()=> {
+          this.auth.setLogIn()
+          this.userService.deleteOldProfile()
           this.user.email = email
           this.user.password = password
           this.userService.newSignInUser(this.user)
-          this.auth.setLogIn()
           this.router.navigate(['tabs/tab1'])
         }
       }
@@ -96,10 +125,6 @@ export class SingUpPage implements OnInit {
     })
 
     return await alertMessage.present()
-    
-
-    //this.router.navigate(['login/create-new-account/email-confirmation'])
-    
   }
 
   deleteError(param) {

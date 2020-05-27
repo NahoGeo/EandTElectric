@@ -7,6 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EToolboxPage implements OnInit {
 
+  options = [
+    {
+      title: 'Motor Calculator',
+      path: '/motor-calculator',
+      img: '../../assets/img/motor-electrico.png'
+    },
+    {
+      title: 'Wire & Conduit',
+      path: '/wire-and-conduit',
+      img: '../../assets/img/wires-and-conduit.png'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit() {

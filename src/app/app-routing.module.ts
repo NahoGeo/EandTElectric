@@ -15,31 +15,38 @@ const routes: Routes = [
   },
   {
     path: 'motor-calculator',
-    loadChildren: () => import('./pages/motor-calculator/motor-calculator.module').then( m => m.MotorCalculatorPageModule)
+    loadChildren: () => import('./pages/motor-calculator/motor-calculator.module').then( m => m.MotorCalculatorPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'wire-and-conduit',
-    loadChildren: () => import('./pages/wire-and-conduit/wire-and-conduit.module').then( m => m.WireAndConduitPageModule)
+    loadChildren: () => import('./pages/wire-and-conduit/wire-and-conduit.module').then( m => m.WireAndConduitPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'e-toolbox',
-    loadChildren: () => import('./pages/e-toolbox/e-toolbox.module').then( m => m.EToolboxPageModule)
+    loadChildren: () => import('./pages/e-toolbox/e-toolbox.module').then( m => m.EToolboxPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'edit-profile',
-    loadChildren: () => import('./pages/personal-information/personal-information.module').then( m => m.PersonalInformationPageModule)
+    loadChildren: () => import('./pages/personal-information/personal-information.module').then( m => m.PersonalInformationPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'work-experience',
-    loadChildren: () => import('./pages/work-experience/work-experience.module').then( m => m.WorkExperiencePageModule)
+    loadChildren: () => import('./pages/work-experience/work-experience.module').then( m => m.WorkExperiencePageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'education',
-    loadChildren: () => import('./pages/education/education.module').then( m => m.EducationPageModule)
+    loadChildren: () => import('./pages/education/education.module').then( m => m.EducationPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'training',
-    loadChildren: () => import('./pages/training/training.module').then( m => m.TrainingPageModule)
+    loadChildren: () => import('./pages/training/training.module').then( m => m.TrainingPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'job-oportunity',

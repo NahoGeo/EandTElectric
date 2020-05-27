@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { set, get } from './storage'
+import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ export class AuthenticationService {
   
   private isLogIn: boolean
 
-  constructor() {
+  constructor(private alertCtrl: AlertController, private router: Router) {
   }
 
   async setIfLogInOrOut() {

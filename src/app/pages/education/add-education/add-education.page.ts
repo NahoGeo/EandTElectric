@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Education } from 'src/app/models/education';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-add-education',
@@ -10,6 +11,8 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./add-education.page.scss'],
 })
 export class AddEducationPage implements OnInit {
+
+  user: User
 
   education: Education = {
     institute: '',
@@ -23,6 +26,15 @@ export class AddEducationPage implements OnInit {
 
   ngOnInit() {
     this.showNote()
+    this.getUser()
+  }
+
+  ionViewWillEnter() {
+    this.getUser()
+  }
+
+  getUser() {
+    this.user = this.userService.getUser()
   }
   
   async showNote() {

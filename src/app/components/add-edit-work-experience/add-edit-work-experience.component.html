@@ -3,26 +3,29 @@
         <ion-label position="floating">Company</ion-label>
         <ion-input [(ngModel)]="workExp.name" clear-input="true" type="text"></ion-input>
     </ion-item>
-    <ion-card-content>
-        <ion-list>
-            <ion-item class="ion-no-padding" lines='none'>
-                <h2>Positions</h2>
-                <ion-icon *ngIf="addPosition" slot="end" name='add' (click)="PositionShowHide()"></ion-icon>
-            </ion-item>
-            <ion-text *ngFor="let position of workExp.positions">
-                <ion-item lines='none' class="ion-no-padding">
-                    <p>{{position.position}}</p>
-                    <ion-icon *ngIf="!showPositionForm" slot="end" name='pencil' (click)="editPosition(position.id)"></ion-icon>
-                </ion-item>
-                <p>{{position.startDate | date}} <span *ngIf="!position.current && position.endDate">to {{position.endDate | date}}</span>
-                    <span *ngIf="position.current || !position.endDate">(current)</span>
-                </p>
-            </ion-text>
-        </ion-list>
-    </ion-card-content>
+    <ion-list>
+        <ion-item>
+            <ion-label position="floating">Position</ion-label>
+            <ion-input [(ngModel)]="workExp.position" clear-input="true" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Start Date</ion-label>
+            <ion-datetime [(ngModel)]="workExp.startDate" display-format="MM/DD/YYYY"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf="!currentSetted">
+            <ion-label>Current</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="workExp.current"></ion-checkbox>
+        </ion-item>
+        <ion-item *ngIf="!workExp.current">
+            <ion-label position="floating">End Date</ion-label>
+            <ion-datetime [(ngModel)]="workExp.endDate" display-format="MM/DD/YYYY"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea [(ngModel)]="workExp.description" clear-input="true" type="text"></ion-textarea>
+        </ion-item>
+    </ion-list>
 </ion-card>
-
-<app-add-edit-position *ngIf="showPositionForm" [position]='position' (hide)='PositionShowHide()' (newPosition)='savePosition($event)'></app-add-edit-position>
 
 <ion-item lines='none' *ngIf="!showPositionForm">
     <ion-button block color="primary" style="margin: auto;" type="submit" (click)="saveChanges()">

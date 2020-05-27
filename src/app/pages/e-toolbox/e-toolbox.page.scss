@@ -1,4 +1,17 @@
+ion-content ion-toolbar {
+    --background: translucent;
+}
+
 ion-card {
     padding-top: 15px;
     border-radius: 20px;
+}
+
+.Container {
+    height: 100%;
+    display: flex;
+}
+
+.SubContainer {
+    margin: auto;
 }

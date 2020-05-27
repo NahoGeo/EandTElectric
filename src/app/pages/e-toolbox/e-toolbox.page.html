@@ -13,18 +13,14 @@
 <ion-content>
     <div class="Container">
         <div class="SubContainer">
-            <ion-card routerLink='/motor-calculator'>
-                <ion-card-title class="ion-text-center">
-                    <ion-label>Motor Calculator</ion-label>
-                </ion-card-title>
-                <ion-img src="../../assets/img/motor-electrico.png"></ion-img>
-            </ion-card>
-            <ion-card routerLink='/wire-and-conduit'>
-                <ion-card-title class="ion-text-center">
-                    <ion-label>Wire & Conduit</ion-label>
-                </ion-card-title>
-                <ion-img src="../../assets/img/wires-and-conduit.png"></ion-img>
-            </ion-card>
+            <ion-list>
+                <ion-card *ngFor="let option of options" routerLink='{{option.path}}'>
+                    <ion-card-title class="ion-text-center">
+                        <ion-label>{{option.title}}</ion-label>
+                    </ion-card-title>
+                    <ion-img src="{{option.img}}"></ion-img>
+                </ion-card>
+            </ion-list>
         </div>
     </div>
 </ion-content>

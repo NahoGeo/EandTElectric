@@ -7,6 +7,9 @@ export interface Profile {
     email: string
     password?: string
     phoneNumber?: string
-    celphoneNumber?: string
-    address?: Address
+    cellphoneNumber?: string
+    address?: string
+    city?: string
+    state?: string
+    zipCode?: string
 }

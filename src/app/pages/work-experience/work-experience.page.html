@@ -20,11 +20,12 @@
                         <h2>{{workExp.name}}</h2>
                         <ion-icon slot="end" name='pencil' [routerLink]="['edit-work-experience', workExp.id]"></ion-icon>
                     </ion-item>
-                    <ion-text *ngFor="let position of workExp.positions">
-                        <p>{{position.position}}</p>
-                        <p>{{position.startDate | date}} <span *ngIf="!position.current && position.endDate">to {{position.endDate | date}}</span>
-                            <span *ngIf="position.current || !position.endDate">(current)</span>
+                    <ion-text>
+                        <p>{{workExp.position}}</p>
+                        <p>{{workExp.startDate | date}} <span *ngIf="!workExp.current && workExp.endDate">to {{workExp.endDate | date}}</span>
+                            <span *ngIf="workExp.current || !workExp.endDate">(current)</span>
                         </p>
+                        <p>{{workExp.description}}</p>
                     </ion-text>
                 </ion-label>
             </ion-item>

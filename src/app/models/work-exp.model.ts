@@ -1,7 +1,9 @@
-import { Position } from './position';
-
 export interface WorkExp {
     id:string
     name:string
-    positions:Array<Position>
+    position: string
+    startDate: string
+    endDate?: string
+    description: string
+    current: boolean
 }

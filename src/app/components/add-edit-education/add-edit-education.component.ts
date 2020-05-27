@@ -10,11 +10,31 @@ import { AlertController } from '@ionic/angular';
 export class AddEditEducationComponent implements OnInit {
 
   @Input() education: Education
+  @Input() educations: Array<Education>
   @Output() newEducation = new EventEmitter<Education>()
+
+  currentSetted: boolean = false
 
   constructor(private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.showCurrent()
+  }
+
+  ionViewWillEnter() {
+    this.showCurrent()
+  }
+
+  showCurrent() {
+    if(this.educations.length > 0) {
+      this.educations.forEach(education => {
+        if(education.current) {
+          if(education.id !== this.education.id) {
+            this.currentSetted = true
+          }
+        }
+      });
+    }
   }
 
   async saveChanges() {

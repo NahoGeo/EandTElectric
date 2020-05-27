@@ -8,5 +8,5 @@
 </ion-header>
 
 <ion-content>
-    <app-add-edit-education [education]='education' (newEducation)='editEducation($event)'></app-add-edit-education>
+    <app-add-edit-education [education]='education' [educations]='user.educations' (newEducation)='editEducation($event)'></app-add-edit-education>
 </ion-content>

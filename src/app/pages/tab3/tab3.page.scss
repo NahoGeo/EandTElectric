@@ -1,3 +1,12 @@
 ion-content ion-toolbar {
-  --background: translucent;
+    --background: translucent;
+}
+
+.Container {
+    height: 100%;
+    display: flex;
+}
+
+.SubContainer {
+    margin: auto;
 }

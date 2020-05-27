@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { set, get } from 'src/app/services/storage'
+import { set, get, remove } from 'src/app/services/storage'
 import { User } from '../models/user';
 import { Education } from '../models/education';
 import { Training } from '../models/training';
-import { Position } from '../models/position';
 import { WorkExp } from '../models/work-exp.model';
 
 @Injectable({
@@ -18,14 +17,11 @@ export class UserService {
     email: '',
     password: '',
     phoneNumber: '',
-    celphoneNumber: '',
-    address: {
-      street: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      country: ''
-    },
+    cellphoneNumber: '',
+    address: '',
+    city: '',
+    state: '',
+    zipCode: '',
     educations: [],
     workExps: [],
     trainings: []
@@ -49,6 +45,29 @@ export class UserService {
 
   async setUserValues() {
     this.user = await get('user')
+  }
+
+  deleteOldProfile() {
+    if (this.user.email){
+      remove('user')
+      this.user = {
+        profileImage: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+        cellphoneNumber: '',
+        address: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        educations: [],
+        workExps: [],
+        trainings: []
+      }
+      this.saveUser()
+    }
   }
 
   private oldId: number = 0
@@ -97,12 +116,11 @@ export class UserService {
     this.user.lastName = data.lastName
     this.user.email = data.email
     this.user.phoneNumber = data.phoneNumber
-    this.user.celphoneNumber = data.celphoneNumber
-    this.user.address.street = data.address.street
-    this.user.address.city = data.address.city
-    this.user.address.state = data.address.state
-    this.user.address.zipCode = data.address.zipCode
-    this.user.address.country = data.address.country
+    this.user.cellphoneNumber = data.cellphoneNumber
+    this.user.address = data.address
+    this.user.city = data.city
+    this.user.state = data.state
+    this.user.zipCode = data.zipCode
 
     this.saveUser()
   }
@@ -138,25 +156,12 @@ export class UserService {
   editWorkExp(id: string, data: WorkExp) {
     this.user.workExps.forEach(workExp => {
       if(workExp.id === id){
-        workExp.name = data.name
-      }
-    })
-
-    this.saveUser()
-  }
-
-  editPosition(idWE: string, idP: string, data: Position) {
-    this.user.workExps.forEach(workExp => {
-      if(workExp.id === idWE) {
-        workExp.positions.forEach(position => {
-          if(position.id === idP) {
-            position.position = data.position
-            position.startDate = data.startDate
-            position.current = data.current
-            position.endDate = data.endDate
-            position.description = data.description
-          }
-        })
+        workExp.name = data.name,
+        workExp.position = data.position,
+        workExp.startDate = data.startDate,
+        workExp.endDate = data.endDate,
+        workExp.current = data.current,
+        workExp.description = data.description
       }
     })
 
@@ -209,68 +214,14 @@ export class UserService {
         {
           id: `${this.id()}`,
           name: data.name,
-          positions: data.positions
+          position: data.position,
+          startDate: data.startDate,
+          endDate: data.endDate,
+          current: data.current,
+          description: data.description
         }
       )
       this.saveUser()
     }, 300)
   }
-
-  addPosition(id:string, data: Position) {
-    for(let i = 0; i < this.user.workExps.length; i++) {
-      if(this.user.workExps[i].id === id) {
-        this.lastId(this.user.workExps[i].positions)
-      }
-    }
-
-    setTimeout(()=>{
-      for(let i = 0; i < this.user.workExps.length; i++) {
-        if(this.user.workExps[i].id === id) {
-          this.user.workExps[i].positions.push(
-            {
-              id: `${this.id()}`,
-              position: data.position,
-              startDate: data.startDate,
-              current: data.current,
-              endDate: data.endDate,
-              description: data.description
-            }
-          )
-          this.saveUser()
-        }
-      }
-    }, 300)
-  }
-
 }
-
-
-
-/* oldId: number = 3
-
-  lastId() {
-    for (let i = 0; i < this.places.length; i++) {
-      if (i == this.places.length - 1) {
-        this.oldId= Number(this.places[i].id)
-      }
-    }
-  }
-
-  id() {
-    return this.oldId + 1
-  } */
-
-
-/* addPlace(title: string, image: string){
-
-    this.places.push({
-      id : `${this.id()}`,
-      title,
-      image,
-      comments:[]
-    })
-    setTimeout(()=>{
-      this.lastId()
-    }, 500)
-
-} */

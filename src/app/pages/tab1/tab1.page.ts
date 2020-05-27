@@ -45,47 +45,24 @@ export class Tab1Page {
   
   async checkAuth(path: string) {
     if(path === this.options[1].path) {
-      if(this.authService.isLogged()){
-        if (!this.user.firstName && this.user.workExps.length === 0 && this.user.educations.length === 0 && this.user.trainings.length === 0) {
+      if (!this.user.firstName || this.user.workExps.length === 0 || this.user.educations.length === 0 || this.user.trainings.length === 0) {
 
-          const alertMessage = await this.alertCtrl.create({
-      
-            header: 'Alert',
-            message: "You need to fill your profile for get access to this page",
-            buttons: [{
-              text: 'Later',
-              role: 'cancel'
-            },
-            {
-              text: 'Profile',
-              handler: ()=> {
-                this.router.navigate(['/tabs/tab2'])
-              }
-            }
-          ]
-          })
-          return await alertMessage.present()
-        }
-        
-        this.router.navigate([`${path}`])
-      }else {
         const alertMessage = await this.alertCtrl.create({
-      
+    
           header: 'Alert',
-          message: "You need to sign in for get access to this page",
+          message: "You need to fill your profile to access this page",
           buttons: [{
             text: 'Later',
             role: 'cancel'
           },
           {
-            text: 'Sign In',
+            text: 'Profile',
             handler: ()=> {
-              this.router.navigate(['/login'])
+              this.router.navigate(['/tabs/tab2'])
             }
           }
         ]
         })
-    
         return await alertMessage.present()
       }
     }

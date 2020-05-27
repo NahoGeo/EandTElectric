@@ -18,6 +18,7 @@ export class WorkExperiencePage implements OnInit {
 
   ngOnInit() {
     this.getUser()
+    this.changeAddWorkExp()  
   }
 
   getUser() {

@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { AddEditTrainingComponent } from './add-edit-training/add-edit-training.component';
 import { AddEditWorkExperienceComponent } from './add-edit-work-experience/add-edit-work-experience.component';
-import { AddEditPositionComponent } from './add-edit-position/add-edit-position.component';
 
 
 
@@ -13,8 +12,7 @@ import { AddEditPositionComponent } from './add-edit-position/add-edit-position.
   declarations: [
     AddEditEducationComponent,
     AddEditTrainingComponent,
-    AddEditWorkExperienceComponent,
-    AddEditPositionComponent
+    AddEditWorkExperienceComponent
   ],
   imports: [
     CommonModule,
@@ -24,8 +22,7 @@ import { AddEditPositionComponent } from './add-edit-position/add-edit-position.
   exports: [
     AddEditEducationComponent,
     AddEditTrainingComponent,
-    AddEditWorkExperienceComponent,
-    AddEditPositionComponent
+    AddEditWorkExperienceComponent
   ]
 })
 export class ComponentsModule { }

@@ -706,7 +706,7 @@ export class WireAndConduitService {
   ]
 
   notes = [
-    'Ampacity of conductors based on 30 C ambient.',
+    'Ampacity of conductors based on 30 Deg C ambient.',
     'Conduit sizes for aluminum based on the use of compact conductors, where a major portion of the load consists of nonlinear loads, the neutral is considered to be current carrying.',
     'On 4-wire applications, derate the ampacity to 80% per note 8 and note 10© of the NEC ampacity tables.'
   ]

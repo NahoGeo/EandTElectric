@@ -12,7 +12,7 @@
             <ion-label position="floating">Start Date</ion-label>
             <ion-datetime [(ngModel)]="education.startDate" display-format="MM/DD/YYYY"></ion-datetime>
         </ion-item>
-        <ion-item>
+        <ion-item *ngIf="!currentSetted">
             <ion-label>Current</ion-label>
             <ion-checkbox slot="end" [(ngModel)]="education.current"></ion-checkbox>
         </ion-item>

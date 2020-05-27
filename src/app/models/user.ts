@@ -10,8 +10,11 @@ export interface User {
     email: string
     password: string
     phoneNumber: string
-    celphoneNumber: string
-    address: Address
+    cellphoneNumber: string
+    address: string
+    city: string
+    state: string
+    zipCode: string
     educations: Array<Education>
     workExps: Array<WorkExp>
     trainings: Array<Training>

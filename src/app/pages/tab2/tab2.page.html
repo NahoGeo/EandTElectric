@@ -27,9 +27,9 @@
                 <ion-card-title>{{user.firstName == '' ? 'Full' : user.firstName}} {{user.lastName == '' ? 'Name' :user.lastName}}</ion-card-title>
                 <ion-icon slot="end" name="pencil" routerLink="/edit-profile"></ion-icon>
             </ion-item>
-            <ion-card-subtitle>{{user.workExps[0] == undefine ? "Position" :user.workExps[0].positions[0].position}} in {{user.workExps[0] == undefine ? "Company's Name" :user.workExps[0].name}}</ion-card-subtitle>
-            <ion-label>{{user.workExps[0] == undefine ? "Company's Name " :user.workExps[0].name}} - {{user.educations[0] == undefine ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
-            <ion-label>{{user.address.city == '' ? "City" : user.address.city}}, {{user.address.state == '' ? "State" : user.address.state}}, {{user.address.country == '' ? "Country" : user.address.country}}</ion-label>
+            <ion-card-subtitle>{{user.workExps[0] == undefined ? "Position" :user.workExps[0].position}} in {{user.workExps[0] == undefined ? "Company's Name" :user.workExps[0].name}}</ion-card-subtitle>
+            <ion-label>{{user.workExps[0] == undefined ? "Company's Name " :user.workExps[0].name}} - {{user.educations[0] == undefined ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
+            <ion-label>{{user.city == '' ? "City" : user.city}}, {{user.state == '' ? "State" : user.state}}</ion-label>
         </ion-card-content>
     </ion-card>
     <ion-card>
@@ -41,11 +41,11 @@
             <ion-item *ngFor="let workExp of user.workExps">
                 <ion-icon name="business" style="margin-right: 10px;"></ion-icon>
                 <ion-label class="ion-text-wrap">
-                    <h2>{{user.workExps[0] == undefine ? "Company's Name" :workExp.name}}</h2>
-                    <ion-text *ngFor="let position of workExp.positions">
-                        <p>{{user.workExps[0] == undefine ? "Position" :position.position}}</p>
-                        <p>{{user.workExps[0] == undefine ? "Start Date" :position.startDate | date}} <span *ngIf="!position.current && position.endDate">to {{user.workExps[0] == undefine ? "End Date" :position.endDate | date}}</span>
-                            <span *ngIf="position.current || !position.endDate">(current)</span>
+                    <h2>{{user.workExps[0] == undefined ? "Company's Name" :workExp.name}}</h2>
+                    <ion-text>
+                        <p>{{user.workExps[0] == undefined ? "Position" :workExp.position}}</p>
+                        <p>{{user.workExps[0] == undefined ? "Start Date" :workExp.startDate | date}} <span *ngIf="!workExp.current && workExp.endDate">to {{user.workExps[0] == undefined ? "End Date" :workExp.endDate | date}}</span>
+                            <span *ngIf="workExp.current || !workExp.endDate">(current)</span>
                         </p>
                     </ion-text>
                 </ion-label>
@@ -61,10 +61,10 @@
             <ion-item *ngFor="let education of user.educations">
                 <ion-icon name="school" style="margin-right: 10px;"></ion-icon>
                 <ion-label class="ion-text-wrap">
-                    <h2>{{user.educations[0] == undefine ? "Institute's Name" :education.institute}}</h2>
+                    <h2>{{user.educations[0] == undefined ? "Institute's Name" :education.institute}}</h2>
                     <ion-text>
-                        <p>{{user.educations[0] == undefine ? "Degree" :education.degree}}</p>
-                        <p>{{user.educations[0] == undefine ? "Start Date" :education.startDate | date}} <span *ngIf="!education.current && education.endDate">to {{user.educations[0] == undefine ? "End Date" :education.endDate | date}}</span>
+                        <p>{{user.educations[0] == undefined ? "Degree" :education.degree}}</p>
+                        <p>{{user.educations[0] == undefined ? "Start Date" :education.startDate | date}} <span *ngIf="!education.current && education.endDate">to {{user.educations[0] == undefined ? "End Date" :education.endDate | date}}</span>
                             <span *ngIf="education.current || !education.endDate">(current)</span>
                         </p>
                     </ion-text>

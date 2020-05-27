@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DarkModeService } from 'src/app/services/dark-mode.service';
 import { AuthenticationService } from 'src/app/services/authentication.service';
@@ -8,14 +8,15 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
 
   darkMode: boolean
-  isLogIn: boolean
 
   constructor(private router: Router, private darkOption: DarkModeService, private auth: AuthenticationService) {
     this.getStatus()
-    this.isLogIn = this.auth.isLogged()
+  }
+
+  ngOnInit(){
   }
 
   getStatus() {
@@ -23,11 +24,6 @@ export class Tab3Page {
   }
 
   ionViewWillEnter() {
-    this.isLogIn = this.auth.isLogged()
-  }
-
-  logIn() {
-    this.router.navigate(['login'])
   }
 
   logOut() {
@@ -37,7 +33,6 @@ export class Tab3Page {
 
   changeDarkMode() {
     this.darkMode = this.darkOption.changeModeSwitch()
-    console.log(this.darkMode)
   }
 
 }
