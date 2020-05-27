@@ -20,7 +20,7 @@ export class Tab1Page {
       path: '/tabs/tab2'
     },
     {
-      option: 'Job Oportunity',
+      option: 'Job Opportunity',
       icon: 'business',
       path: 'job-oportunity'
     },
