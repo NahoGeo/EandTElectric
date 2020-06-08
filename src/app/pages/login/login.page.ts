@@ -56,8 +56,8 @@ export class LoginPage implements OnInit {
     
   }
 
-  getUser() {
-    this.user = this.userService.getUser()
+  async getUser() {
+    this.user = await this.userService.getUser()
   }
 
   ionViewWillEnter() {

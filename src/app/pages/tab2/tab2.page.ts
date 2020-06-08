@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
-import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -12,7 +11,7 @@ export class Tab2Page implements OnInit {
 
   user: User
 
-  constructor(private userService: UserService, private loadingCtrl: LoadingController) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit(){
@@ -20,7 +19,7 @@ export class Tab2Page implements OnInit {
   }
   
   getUser() {
-    this.user =this.userService.getUser()
+    this.user = this.userService.getUser()
   }
   
   ionViewWillEnter() {

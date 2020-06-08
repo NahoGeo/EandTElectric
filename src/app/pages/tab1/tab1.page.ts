@@ -35,8 +35,8 @@ export class Tab1Page {
     this.getUser()
   }
 
-  getUser() {
-    this.user = this.userService.getUser()
+  async getUser() {
+    this.user = await this.userService.getUser()
   }
 
   ionViewWillEnter() {

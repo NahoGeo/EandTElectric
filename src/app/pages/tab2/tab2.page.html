@@ -14,10 +14,10 @@
 
     <ion-card class="ion-padding-top">
 
-        <ion-row class="ion-padding-horizontal" *ngIf="user.profileImage">
+        <ion-row class="ion-padding-horizontal">
             <ion-col size="12">
                 <ion-avatar class="ion-no-margin">
-                    <ion-img [src]="user.profileImage"></ion-img>
+                    <ion-img [src]='user.profileImage || "../../assets/img/noImage.png"'></ion-img>
                 </ion-avatar>
             </ion-col>
         </ion-row>

@@ -11,12 +11,10 @@
 
 <ion-content [fullscreen]="true">
     <ion-img src="assets/img/EandTElectric-Logo.png"></ion-img>
-    <ion-list class="ion-no-padding">
-        <ion-card *ngFor="let option of options" (click)='checkAuth(option.path)' class="ion-block">
-            <ion-item lines="none">
-                <ion-icon name="{{option.icon}}"></ion-icon>
-                <ion-label class="ion-text-center">{{option.option}}</ion-label>
-            </ion-item>
-        </ion-card>
-    </ion-list>
+    <ion-card *ngFor="let option of options" (click)='checkAuth(option.path)' class="ion-block">
+        <ion-item lines="none">
+            <ion-icon name="{{option.icon}}"></ion-icon>
+            <ion-label class="ion-text-center">{{option.option}}</ion-label>
+        </ion-item>
+    </ion-card>
 </ion-content>

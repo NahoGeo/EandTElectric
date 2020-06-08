@@ -15,7 +15,7 @@ export class TrainingPage implements OnInit {
 
   constructor( private userService: UserService) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.getUser()
   }
 
