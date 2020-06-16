@@ -36,7 +36,7 @@ export class CalculatorPage implements OnInit {
 
   enterOperator(operator: string) {
     let display2IsOperator = this.lastDisplay2IsOperator()
-    if(!display2IsOperator){
+    if(!display2IsOperator || this.display1 && !this.display2){
       if(this.num1 && this.num2 && operator !== '=') {
         let result = this.calService.equal(this.num1, this.num2, this.lastOperator)
         this.num1 = result

@@ -1,28 +1,48 @@
 .input1 {
-    margin-top: 20px !important;
     margin: auto;
-    width: 90% !important;
 }
 
 .input2 {
     margin: auto;
-    margin-bottom: 50px;
-    width: 90% !important;
+}
+
+.input-border {
+    border: 1px solid grey;
+    width: 90%;
+    margin: auto;
 }
 
 ion-col {
-    height: 3rem;
-    border: 1px solid;
-    text-align: center;
+    height: 100%;
+    width: 100%;
+    padding: 5%;
+    font-size: larger;
+}
+
+.height {
+    height: 100%;
+}
+
+.vertical {
+    margin-top: 45%;
 }
 
 ion-input {
-    border: 1px solid;
     text-align: right;
 }
 
 ion-button {
     margin: auto;
-    margin-top: 30px;
     width: 85%;
+    height: 100%;
+}
+
+ion-row {
+    height: 100%;
+    align-items: center;
+}
+
+ion-fab {
+    width: 100%;
+    height: 10%;
 }

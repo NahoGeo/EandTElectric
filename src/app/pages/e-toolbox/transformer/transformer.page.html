@@ -70,7 +70,7 @@
     <div *ngIf="singlePhase">
 
         <ion-item lines="full">
-            <ion-label>Horse Power</ion-label>
+            <ion-label>Voltage</ion-label>
             <ion-select [(ngModel)]="singleVoltageVal" (ionChange)='loadData("single")' value="" multiple="false" placeholder="Voltage">
                 <ion-select-option *ngFor="let sVoltages of singleVoltages" value="{{sVoltages}}">{{sVoltages}}</ion-select-option>
             </ion-select>

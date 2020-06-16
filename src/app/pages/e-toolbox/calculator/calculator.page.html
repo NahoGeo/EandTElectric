@@ -8,37 +8,47 @@
 </ion-header>
 
 <ion-content>
-    <ion-row class="input1">
-        <ion-input value='{{display1}}' readonly></ion-input>
-    </ion-row>
-    <ion-row class="input2">
-        <ion-input value='{{display2}}' readonly></ion-input>
-    </ion-row>
-    <ion-row>
-        <ion-col (click)="enterNumber('7')" size='2' offset='2'>7</ion-col>
-        <ion-col (click)="enterNumber('8')" size='2'>8</ion-col>
-        <ion-col (click)="enterNumber('9')" size='2'>9</ion-col>
-        <ion-col (click)="enterOperator('/')" size='2' offset='1'>÷</ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col (click)="enterNumber('4')" size='2' offset='2'>4</ion-col>
-        <ion-col (click)="enterNumber('5')" size='2'>5</ion-col>
-        <ion-col (click)="enterNumber('6')" size='2'>6</ion-col>
-        <ion-col (click)="enterOperator('x')" size='2' offset='1'>x</ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col (click)="enterNumber('1')" size='2' offset='2'>1</ion-col>
-        <ion-col (click)="enterNumber('2')" size='2'>2</ion-col>
-        <ion-col (click)="enterNumber('3')" size='2'>3</ion-col>
-        <ion-col (click)="enterOperator('-')" size='2' offset='1'>-</ion-col>
-    </ion-row>
-    <ion-row>
-        <ion-col (click)="clear()" size='2' offset='2'>CE</ion-col>
-        <ion-col (click)="enterNumber('0')" size='2'>0</ion-col>
-        <ion-col (click)="enterNumber('.')" size='2'>.</ion-col>
-        <ion-col (click)="enterOperator('+')" size='2' offset='1'>+</ion-col>
-    </ion-row>
-    <ion-button (click)="enterOperator('=')" expand="block" shape="round">
-        =
-    </ion-button>
+    <div class="height">
+        <ion-fab vertical="top">
+            <div class="input-border">
+                <ion-row class="input1">
+                    <ion-input value='{{display1}}' readonly></ion-input>
+                </ion-row>
+                <ion-row class="input2">
+                    <ion-input value='{{display2}}' readonly></ion-input>
+                </ion-row>
+            </div>
+        </ion-fab>
+        <div class="vertical">
+            <ion-row>
+                <ion-col class='ion-text-center' (click)="enterNumber('7')" size='3'>7</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('8')" size='3'>8</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('9')" size='3'>9</ion-col>
+                <ion-col class='ion-text-center' (click)="enterOperator('/')" size='1' offset='1'>÷</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class='ion-text-center' (click)="enterNumber('4')" size='3'>4</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('5')" size='3'>5</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('6')" size='3'>6</ion-col>
+                <ion-col class='ion-text-center' (click)="enterOperator('x')" size='1' offset='1'>x</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class='ion-text-center' (click)="enterNumber('1')" size='3'>1</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('2')" size='3'>2</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('3')" size='3'>3</ion-col>
+                <ion-col class='ion-text-center' (click)="enterOperator('-')" size='1' offset='1'>-</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col class='ion-text-center' (click)="clear()" size='3'>CE</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('0')" size='3'>0</ion-col>
+                <ion-col class='ion-text-center' (click)="enterNumber('.')" size='3'>.</ion-col>
+                <ion-col class='ion-text-center' (click)="enterOperator('+')" size='1' offset='1'>+</ion-col>
+            </ion-row>
+        </div>
+        <ion-fab vertical="bottom">
+            <ion-button (click)="enterOperator('=')" expand="block" shape="round">
+                =
+            </ion-button>
+        </ion-fab>
+    </div>
 </ion-content>
