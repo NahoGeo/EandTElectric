@@ -102,6 +102,7 @@ export class SingUpPage implements OnInit {
       
       header: 'Email Confirmation',
       message: "<p>Enter the confirmation key<br>we sent to your email.</p>",
+      backdropDismiss: false,
       inputs: [
         {
           name: 'Confirmation Key',

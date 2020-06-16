@@ -11,7 +11,7 @@ export class WireAndConduitService {
       value : "#14",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '20',
             val2: {
@@ -40,7 +40,7 @@ export class WireAndConduitService {
       value : "#12",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '25',
             val2: {
@@ -69,7 +69,7 @@ export class WireAndConduitService {
       value : "#10",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '35',
             val2: {
@@ -98,7 +98,7 @@ export class WireAndConduitService {
       value : "#8",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '50',
             val2: {
@@ -127,7 +127,7 @@ export class WireAndConduitService {
       value : "#6",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '65',
             val2: {
@@ -156,7 +156,7 @@ export class WireAndConduitService {
       value : "#4",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '85',
             val2: {
@@ -185,7 +185,7 @@ export class WireAndConduitService {
       value : "#3",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '100',
             val2: {
@@ -214,7 +214,7 @@ export class WireAndConduitService {
       value : "#2",
       fields : [
           {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '115',
             val2: {
@@ -243,7 +243,7 @@ export class WireAndConduitService {
       value : "#1",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '130',
             val2: {
@@ -272,7 +272,7 @@ export class WireAndConduitService {
       value : "1/0",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '150',
             val2: {
@@ -301,7 +301,7 @@ export class WireAndConduitService {
       value : "2/0",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '175',
             val2: {
@@ -330,7 +330,7 @@ export class WireAndConduitService {
       value : "3/0",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '200',
             val2: {
@@ -359,7 +359,7 @@ export class WireAndConduitService {
       value : "4/0",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '230',
             val2: {
@@ -388,7 +388,7 @@ export class WireAndConduitService {
       value : "250",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '255',
             val2: {
@@ -417,7 +417,7 @@ export class WireAndConduitService {
       value : "300",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '285',
             val2: {
@@ -446,7 +446,7 @@ export class WireAndConduitService {
       value : "350",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '310',
             val2: {
@@ -475,7 +475,7 @@ export class WireAndConduitService {
       value : "400",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '335',
             val2: {
@@ -504,7 +504,7 @@ export class WireAndConduitService {
       value : "500",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '380',
             val2: {
@@ -533,7 +533,7 @@ export class WireAndConduitService {
       value : "600",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '420',
             val2: {
@@ -562,7 +562,7 @@ export class WireAndConduitService {
       value : "700",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '460',
             val2: {
@@ -591,7 +591,7 @@ export class WireAndConduitService {
       value : "750",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '475',
             val2: {
@@ -620,7 +620,7 @@ export class WireAndConduitService {
       value : "800",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '490',
             val2: {
@@ -649,7 +649,7 @@ export class WireAndConduitService {
       value : "900",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '520',
             val2: {
@@ -678,7 +678,7 @@ export class WireAndConduitService {
       value : "1000",
       fields : [
         {
-          wireType: 'COOPER',
+          wireType: 'COPPER',
           results: {
             val1: '545',
             val2: {

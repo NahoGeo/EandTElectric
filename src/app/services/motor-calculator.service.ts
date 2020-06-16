@@ -4361,10 +4361,6 @@ export class MotorCalculatorService {
 
   constructor() { }
 
-  getSingleTableFields() {
-    return[...this.singleTableFields]
-  }
-
   getVoltages() {
     return [...this.voltages]
   }

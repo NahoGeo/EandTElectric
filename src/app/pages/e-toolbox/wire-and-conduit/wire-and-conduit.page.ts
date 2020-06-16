@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { WireAndConduitService } from '../../services/wire-and-conduit.service';
+import { WireAndConduitService } from '../../../services/wire-and-conduit.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({

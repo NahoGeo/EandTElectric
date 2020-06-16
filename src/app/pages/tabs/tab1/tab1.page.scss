@@ -1,0 +1,31 @@
+ion-content ion-toolbar {
+    --background: translucent;
+}
+
+ion-img {
+    height: 200px;
+    width: 200px;
+    margin: auto;
+}
+
+.Container {
+    height: 100%;
+    display: flex;
+}
+
+.SubContainer {
+    margin: auto;
+    width: 100%;
+}
+
+ion-card {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 15px !important;
+    border-radius: 20px;
+    ion-item {
+        ion-label {
+            font-size: larger;
+        }
+    }
+}

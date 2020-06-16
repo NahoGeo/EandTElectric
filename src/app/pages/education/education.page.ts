@@ -17,6 +17,7 @@ export class EducationPage implements OnInit {
 
   ngOnInit() {
     this.getUser()
+    this.changeAddEducation()  
   }
 
   getUser() {

@@ -1,0 +1,109 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/e-toolbox"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Transformer</ion-title>
+        <ion-item slot="end" lines="none" routerLink='/e-toolbox/calculator'>
+            <ion-icon name="calculator"></ion-icon>
+        </ion-item>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card *ngIf="!singlePhase">
+        <ion-item lines="full" (click)="showThree()">
+            <ion-img src="../../assets/icon/3PhaseIcon256.ico" style="height: 32px; width: 32px;"></ion-img>
+            <ion-label style='padding-left: 10px;'>Three Phase</ion-label>
+        </ion-item>
+    </ion-card>
+
+    <div *ngIf="threePhase">
+
+        <ion-item lines="full">
+            <ion-label>Voltage</ion-label>
+            <ion-select [(ngModel)]="threeVoltageVal" (ionChange)='loadData("three")' value="" multiple="false" placeholder="Voltage">
+                <ion-select-option *ngFor="let tVoltage of threeVoltages" value="{{tVoltage}}">{{tVoltage}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-row *ngIf="threePhaseValues">
+            <ion-col class="ion-text-center" size="6">KAV Rating</ion-col>
+            <ion-col class="ion-text-center" size="6">Amperes</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="threePhaseValues" size="6">
+                <ion-row *ngFor="let tValuesKav of threePhaseValues.KAV">
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label class="ion-text-center">
+                                {{tValuesKav}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col *ngIf="threePhaseValues" size="6">
+                <ion-row *ngFor="let tValuesAmperes of threePhaseValues.amperes">
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label class="ion-text-center">
+                                {{tValuesAmperes}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+
+    </div>
+
+
+    <ion-card *ngIf="!threePhase">
+        <ion-item lines="full" (click)="showSingle()">
+            <ion-img src="../../assets/icon/1PhaseIcon256.ico" style="height: 32px; width: 32px;"></ion-img>
+            <ion-label style='padding-left: 10px;'>Single Phase</ion-label>
+        </ion-item>
+    </ion-card>
+
+    <div *ngIf="singlePhase">
+
+        <ion-item lines="full">
+            <ion-label>Horse Power</ion-label>
+            <ion-select [(ngModel)]="singleVoltageVal" (ionChange)='loadData("single")' value="" multiple="false" placeholder="Voltage">
+                <ion-select-option *ngFor="let sVoltages of singleVoltages" value="{{sVoltages}}">{{sVoltages}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-row *ngIf="singlePhaseValues">
+            <ion-col class="ion-text-center" size="6">KAV Rating</ion-col>
+            <ion-col class="ion-text-center" size="6">Amperes</ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col *ngIf="singlePhaseValues" size="6">
+                <ion-row *ngFor="let sValuesKav of singlePhaseValues.KAV">
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label class="ion-text-center">
+                                {{sValuesKav}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col *ngIf="singlePhaseValues" size="6">
+                <ion-row *ngFor="let sValuesAmperes of singlePhaseValues.amperes">
+                    <ion-col size="12">
+                        <ion-item>
+                            <ion-label class="ion-text-center">
+                                {{sValuesAmperes}}
+                            </ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </div>
+
+</ion-content>

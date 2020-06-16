@@ -1,26 +1,24 @@
 <ion-card>
-    <ion-list>
-        <ion-item>
-            <ion-label position="floating">Institute</ion-label>
-            <ion-input [(ngModel)]="education.institute" clear-input="true" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Degree</ion-label>
-            <ion-input [(ngModel)]="education.degree" clear-input="true" type="text"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating">Start Date</ion-label>
-            <ion-datetime [(ngModel)]="education.startDate" display-format="MM/DD/YYYY"></ion-datetime>
-        </ion-item>
-        <ion-item lines='full' *ngIf="!currentSetted">
-            <ion-label>Current</ion-label>
-            <ion-checkbox slot="end" [(ngModel)]="education.current"></ion-checkbox>
-        </ion-item>
-        <ion-item *ngIf="!education.current">
-            <ion-label position="floating">End Date</ion-label>
-            <ion-datetime [(ngModel)]="education.endDate" display-format="MM/DD/YYYY"></ion-datetime>
-        </ion-item>
-    </ion-list>
+    <ion-item>
+        <ion-label position="floating">Institute</ion-label>
+        <ion-input [(ngModel)]="education.institute" clear-input="true" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Degree</ion-label>
+        <ion-input [(ngModel)]="education.degree" clear-input="true" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label position="floating">Start Date</ion-label>
+        <ion-datetime [(ngModel)]="education.startDate" display-format="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item lines='full' *ngIf="!currentSetted">
+        <ion-label>Current</ion-label>
+        <ion-checkbox slot="end" [(ngModel)]="education.current"></ion-checkbox>
+    </ion-item>
+    <ion-item *ngIf="!education.current">
+        <ion-label position="floating">End Date</ion-label>
+        <ion-datetime [(ngModel)]="education.endDate" display-format="MM/DD/YYYY"></ion-datetime>
+    </ion-item>
 </ion-card>
 <ion-item lines='none'>
     <ion-button block color="primary" style="margin: auto;" type="submit" (click)="saveChanges()">

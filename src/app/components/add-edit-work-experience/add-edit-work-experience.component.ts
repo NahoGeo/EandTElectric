@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { WorkExp } from 'src/app/models/work-exp.model';
-import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 @Component({
@@ -16,7 +15,7 @@ export class AddEditWorkExperienceComponent implements OnInit {
 
   currentSetted: boolean = false
 
-  constructor(private router: Router, private alertCtrl: AlertController) { }
+  constructor(private alertCtrl: AlertController) { }
 
   ngOnInit() {
     this.showCurrent()
@@ -40,7 +39,12 @@ export class AddEditWorkExperienceComponent implements OnInit {
 
   async saveChanges() {
     this.workExp.name = this.workExp.name.trim()
+    this.workExp.position = this.workExp.position.trim()
     let errorMessage = ''
+    
+    let startDate = new Date(this.workExp.startDate)
+    let endDate = new Date(this.workExp.endDate)
+    let currentDate = new Date()
 
     if (!this.workExp.name) {
       errorMessage += `<p>Please write the Company's name</p>`
@@ -48,13 +52,21 @@ export class AddEditWorkExperienceComponent implements OnInit {
     if (!this.workExp.position) {
       errorMessage += `<p>Please add a position</p>`
     }
+    if (startDate > currentDate) {
+      errorMessage += `<p>Start date can not be a future date</p>`
+    }
     if (!this.workExp.current) {
-      if (this.workExp.startDate >= this.workExp.endDate) {
-        errorMessage += `<p>End date can't be older or equal than start date</p>
-                         <p>Note: If start date is equal to current date and end date is a future date, they both will be considerate as a same date.</p>`
+      if (startDate > endDate) {
+        errorMessage += `<p>End date can't be older than start date</p>`
       }
-      if (!this.workExp.endDate){
+      if (startDate.toDateString() === endDate.toDateString()) {
+        errorMessage += `<p>End date can't be equal than start date</p>`
+      }
+      if (!endDate){
         errorMessage += `<p>If you are not studing this carier any more, plese select an end date, but if you keep studing this carier, check it as current</p>`
+      }
+      if (endDate > currentDate) {
+        errorMessage += `<p>End date can not be a future date</p>`
       }
     }else {
       delete this.workExp.endDate
@@ -74,9 +86,9 @@ export class AddEditWorkExperienceComponent implements OnInit {
       return await alertMessage.present()
     }
 
+    this.workExp.startDate = startDate.toDateString()
+    this.workExp.endDate = endDate.toDateString()
+
     this.newWorkExp.emit(this.workExp)
-    setTimeout(() => {
-      this.router.navigate(['/work-experience'])
-    }, 500);
   }
 }

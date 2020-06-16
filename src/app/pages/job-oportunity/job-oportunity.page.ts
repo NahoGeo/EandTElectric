@@ -9,82 +9,63 @@ import { set, get } from 'src/app/services/storage';
 })
 export class JobOportunityPage implements OnInit {
 
-  alldisabled: boolean
-
   options = [
     {
       option: 'Apprentice 1st year',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     },
     {
       option: 'Apprentice 2nd year',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     },
     {
       option: 'Apprentice 3th year',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     },
     {
       option: 'Apprentice 4th year',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     },
     {
       option: 'Journeyman',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     },
     {
       option: 'Master Electrician',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     },
     {
-      option: 'Electrician Estimator/Proyect Manager',
+      option: 'Electrician Estimator',
       icon: 'business',
-      path: ''
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
+    },
+    {
+      option: 'Proyect Manager',
+      icon: 'business',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis incidunt voluptatum libero quo recusandae quaerat eligendi error laborum obcaecati facilis, qui eaque velit similique commodi veritatis laudantium hic officia asperiores?'
     }
   ]
 
+  positionsSelected: string[] = []
+
   constructor(private alertCtrl: AlertController) {
-    this.setInProcess()
   }
 
   ngOnInit() {
-  }
-  
-  async setInProcess() {
-    const value = await get('inProcess')
-    
-    if (!value) {
-      this.showNote()
-      this.setAllDisableOff()
-    }else {
-      const position = await get('positionSelected')
-      set('inProcess', true)
-      this.alldisabled = true
-      this.applicationInProcess(position)
-    }
-  }
-
-  setAllDisableOn(position: string) {
-    set('inProcess', true)
-    set('positionSelected', `${position}`)
-    this.alldisabled = true
-  }
-
-  setAllDisableOff() {
-    set('inProcess', false)
-    this.alldisabled = false
+    this.showNote()
   }
 
   async showNote() {
     let note = await this.alertCtrl.create({
       header: 'Note:',
-      message: 'We present a list of position options to you.<br>You can select only one of them.',
+      message: 'We present a list of position options to you.<br>You can apply to many positions as you want only once.',
+      backdropDismiss: false,
       buttons: [{
         text: 'ok',
         role: 'cancel'
@@ -93,15 +74,60 @@ export class JobOportunityPage implements OnInit {
     return note.present()
   }
 
-  blockSelectOption(position: string) {
-    this.selectionMessage(position)
-    this.setAllDisableOn(position)
+  async positionSelected(positionaplyed: string) {
+    let description: string
+    this.options.forEach(option => {
+      if (positionaplyed === option.option) {
+        description = option.description
+      }
+    });
+    let note = await this.alertCtrl.create({
+      header: `${positionaplyed}`,
+      message: `Description: <br>${description}`,
+      backdropDismiss: false,
+      buttons: [{
+        text: 'Cancel',
+        role: 'cancel'
+      },{
+        text: 'Apply',
+        handler: ()=> {
+          this.positionApplication(positionaplyed)
+        }
+      }]
+    })
+    return note.present()
+  }
+
+  async positionApplication(positionaplyed: string) {
+    let positions = await get('positionsSelected')
+    if(positions) {
+      let positionAlreadyExist: string = ''
+      positions.forEach((position: string) => {
+        if(positionaplyed === position) {
+          positionAlreadyExist = position
+        }
+      })
+      if(positionAlreadyExist){
+      this.applicationInProcess(positionAlreadyExist)
+      }else{
+        this.apply(positionaplyed)
+      }
+    }
+    if(!positions) {
+      this.apply(positionaplyed)
+    }
+  }
+
+  apply(positionaplyed: string) {
+    this.positionsSelected.push(positionaplyed)
+    set('positionsSelected', this.positionsSelected)
+    this.selectionMessage(positionaplyed)
   }
 
   async selectionMessage(position: string) {
     let note = await this.alertCtrl.create({
       header: 'What is next?:',
-      message: `We will send your profile to our HHRR department with the position "${position}" that you selected.`,
+      message: `We will send your profile to our HHRR department with the position "${position}" that you selected.<br>We will contact you as soon as posible`,
       buttons: [{
         text: 'ok',
         role: 'cancel'
@@ -110,7 +136,7 @@ export class JobOportunityPage implements OnInit {
     return note.present()
   }
 
-  async applicationInProcess(position) {
+  async applicationInProcess(position: string) {
     let note = await this.alertCtrl.create({
       header: 'What is next?:',
       message: `You have already applied for the position "${position}"<br>Please wait and we will contact you as soon as posible.`,

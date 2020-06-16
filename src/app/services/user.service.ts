@@ -31,6 +31,10 @@ export class UserService {
   constructor() {
   }
 
+  /**
+   * this function is called when opening the app
+   * sets a new user in the storage
+   */
   async setUser() {
     const user = await get('user');
     if (!user) {
@@ -39,14 +43,24 @@ export class UserService {
     this.setUserValues()
   }
 
-  saveUser() {
+  /**
+   * it sets the user object in the storage
+   */
+  private saveUser() {
     set('user', this.user)
   }
 
+  /**
+   * get the user object stored and assigns it to the user object variable
+   */
   async setUserValues() {
     this.user = await get('user')
   }
 
+  /**
+   * this function is called when another user is trying to create a new account
+   * it sets all the user object's propierties to blank
+   */
   deleteOldProfile() {
     if (this.user.email){
       remove('user')
@@ -72,6 +86,11 @@ export class UserService {
 
   private oldId: number = 0
 
+  /**
+   * it receives an array to get the last object id of this one
+   * and it is assigned to the oldId variable
+   * @param data
+   */
   private lastId(data: any) {
     for (let i = 0; i < data.length; i++) {
       if (i == data.length - 1) {
@@ -80,10 +99,19 @@ export class UserService {
     }
   }
 
+  /**
+   * this function returns a new id number for the next object
+   * @returns a new id
+   */
   private id() {
     return this.oldId + 1
   }
 
+  /**
+   * this function is execute when a new user is creatin a new account
+   * its recive an object with an email and a password and assign those to the user object variable
+   * @param data object
+   */
   newSignInUser(data: any) {
     this.user.email = data.email
     this.user.password = data.password
@@ -91,25 +119,52 @@ export class UserService {
     this.saveUser()
   }
 
+  /**
+   * return all the user object varible
+   */
   getUser() {
     return this.user
   }
 
+  /**
+   * receives a number id from a selected education object
+   * and return the object who contain this number id
+   * @param {string} id
+   * @returns the education object selected
+   */
   getEducationById(id: string) {
     this.setUserValues()
     return this.user.educations.find(education => {return education.id === id})
   }
 
+  /**
+   * receives a number id from a selected training object
+   * and return the object who contain this number id
+   * @param {string} id
+   * @returns the training object selected
+   */
   getTrainingById(id: string) {
     this.setUserValues()
     return this.user.trainings.find(training => {return training.id === id})
   }
 
+  /**
+   * receives a number id from a selected work experience object
+   * and return the object who contain this number id
+   * @param {string} id
+   * @returns the work experience object selected
+   */
   getWorkExpById(id: string) {
     this.setUserValues()
     return this.user.workExps.find(workExp => {return workExp.id === id})
   }
 
+  /**
+   * receives the profile user data object as a param
+   * and sets the param's propierties to the user object variable,
+   * then save the user object variable to the storage
+   * @param data profile object
+   */
   editUserProfile(data: any) {
     this.user.profileImage = data.profileImage
     this.user.firstName = data.firstName
@@ -125,6 +180,13 @@ export class UserService {
     this.saveUser()
   }
 
+  /**
+   * edits a specific education object by its own id
+   * and sets the data's properties to the user's education object,
+   * then save the user object variable to the storage
+   * @param id education object id
+   * @param data education object data
+   */
   editEducation(id: string, data: Education) {
 
     this.user.educations.forEach(education => {
@@ -140,6 +202,13 @@ export class UserService {
     this.saveUser()
   }
 
+  /**
+   * edits a specific training object by its own id
+   * and sets the data's properties to the user's training object,
+   * then save the user object variable to the storage
+   * @param id training object id
+   * @param data training object data
+   */
   editTraining(id: string, data: Training) {
     this.user.trainings.forEach(training => {
       if(training.id === id){
@@ -153,6 +222,13 @@ export class UserService {
     this.saveUser()
   }
 
+  /**
+   * edits a specific work experience object by its own id
+   * and sets the data's properties to an existing user's work experience object,
+   * then save the user object variable to the storage
+   * @param id work experience object id
+   * @param data work experience object data
+   */
   editWorkExp(id: string, data: WorkExp) {
     this.user.workExps.forEach(workExp => {
       if(workExp.id === id){
@@ -168,60 +244,69 @@ export class UserService {
     this.saveUser()
   }
 
+  /**
+   * sets the data's properties to a new user's education object,
+   * then save the user object variable to the storage
+   * @param {Education} data education object
+   */
   addEducation(data: Education) {
 
     this.lastId(this.user.educations)
 
-    setTimeout(()=>{
-      this.user.educations.push(
-        {
-          id: `${this.id()}`,
-          institute: data.institute,
-          degree: data.degree,
-          startDate: data.startDate,
-          current: data.current,
-          endDate: data.endDate
-        }
-      )
-      this.saveUser()
-    }, 300)
+    this.user.educations.push(
+      {
+        id: `${this.id()}`,
+        institute: data.institute,
+        degree: data.degree,
+        startDate: data.startDate,
+        current: data.current,
+        endDate: data.endDate
+      }
+    )
+    this.saveUser()
   }
 
+  /**
+   * sets the data's properties to a new user's training object,
+   * then save the user object variable to the storage
+   * @param {Training} data training object
+   */
   addTraining(data: Training) {
 
     this.lastId(this.user.trainings)
 
-    setTimeout(()=>{
-      this.user.trainings.push(
-        {
-          id: `${this.id()}`,
-          title: data.title,
-          awardedBy: data.awardedBy,
-          recognitionDate: data.recognitionDate,
-          description: data.description
-        }
-      )
-      this.saveUser()
-    }, 300)
+    this.user.trainings.push(
+      {
+        id: `${this.id()}`,
+        title: data.title,
+        awardedBy: data.awardedBy,
+        recognitionDate: data.recognitionDate,
+        description: data.description
+      }
+    )
+    this.saveUser()
   }
 
+  /**
+   * sets the data's properties to a new user's work experience object,
+   * then save the user object variable to the storage
+   * @param {WorkExp} data work experience object
+   */
   addWorkExp(data: WorkExp) {
     
     this.lastId(this.user.workExps)
 
-    setTimeout(()=>{
-      this.user.workExps.push(
-        {
-          id: `${this.id()}`,
-          name: data.name,
-          position: data.position,
-          startDate: data.startDate,
-          endDate: data.endDate,
-          current: data.current,
-          description: data.description
-        }
-      )
-      this.saveUser()
-    }, 300)
+    this.user.workExps.push(
+      {
+        id: `${this.id()}`,
+        name: data.name,
+        position: data.position,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        current: data.current,
+        description: data.description
+      }
+    )
+    this.saveUser()
   }
 }

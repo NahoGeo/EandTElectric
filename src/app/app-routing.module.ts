@@ -14,16 +14,6 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
-    path: 'motor-calculator',
-    loadChildren: () => import('./pages/motor-calculator/motor-calculator.module').then( m => m.MotorCalculatorPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'wire-and-conduit',
-    loadChildren: () => import('./pages/wire-and-conduit/wire-and-conduit.module').then( m => m.WireAndConduitPageModule),
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'e-toolbox',
     loadChildren: () => import('./pages/e-toolbox/e-toolbox.module').then( m => m.EToolboxPageModule),
     canActivate: [AuthGuard]

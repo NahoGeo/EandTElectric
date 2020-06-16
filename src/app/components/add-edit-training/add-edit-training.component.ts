@@ -20,6 +20,7 @@ export class AddEditTrainingComponent implements OnInit {
   async saveChanges() {
     this.training.title = this.training.title.trim()
     this.training.awardedBy = this.training.awardedBy.trim()
+    this.training.recognitionDate = new Date(this.training.recognitionDate).toDateString()
     this.training.description = this.training.description.trim()
     let errorMessage = ''
 
@@ -28,6 +29,9 @@ export class AddEditTrainingComponent implements OnInit {
     }
     if (!this.training.awardedBy) {
       errorMessage += `<p>Please write who awarded you this title</p>`
+    }
+    if(!this.training.recognitionDate) {
+      errorMessage += `<p>Please select a date</p>`
     }
     if (!this.training.description) {
       errorMessage += `<p>Please describe this training</p>`

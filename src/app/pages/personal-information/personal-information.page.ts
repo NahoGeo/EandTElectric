@@ -116,6 +116,34 @@ export class PersonalInformationPage implements OnInit {
     this.profile.profileImage = image.dataUrl
     console.log(this.profile.profileImage)
   }
+
+  phoneEx(option: string) {
+    switch(option) {
+      case 'phoneNumber':
+        if (this.profile.phoneNumber === '')
+        this.profile.phoneNumber = '(123)456-7890'
+        break
+
+      case 'cellphoneNumber':
+        if (this.profile.cellphoneNumber === '')
+        this.profile.cellphoneNumber = '(123)456-7890'
+        break
+    }
+  }
+
+  checkChanges(option: string) {
+    switch(option) {
+      case 'phoneNumber':
+        if (this.profile.phoneNumber === '(123)456-7890')
+        this.profile.phoneNumber = ''
+        break
+
+      case 'cellphoneNumber':
+        if (this.profile.cellphoneNumber === '(123)456-7890')
+        this.profile.cellphoneNumber = ''
+        break
+    }
+  }
   
   async saveChanges() {
     this.profile.firstName = this.profile.firstName.trim()

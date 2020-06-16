@@ -18,8 +18,8 @@ export class EditEducationPage implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-        const Id = paramMap.get('Id')
-        this.education = this.userService.getEducationById(Id)
+      const Id = paramMap.get('Id')
+      this.education = this.userService.getEducationById(Id)
     })
     this.getUser()
   }
@@ -32,11 +32,10 @@ export class EditEducationPage implements OnInit {
     this.user = this.userService.getUser()
   }
 
-  editEducation(data: any) {
+  editEducation(data: Education) {
     this.userService.editEducation(this.education.id, data)
     setTimeout(()=>{
       this.router.navigate(['/education'])
     }, 500)
   }
-
 }

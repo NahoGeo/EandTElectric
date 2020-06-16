@@ -7,7 +7,6 @@
                         <ion-img src="../../assets/img/EandTElectric-Logo.png"></ion-img>
                     </div>
                 </ion-card-header>
-                <hr>
                 <ion-card-content>
                     <ion-item lines="full">
                         <ion-input type="text" (ionFocus)='deleteError(email)' placeholder="Email" clear-input="true" #email required></ion-input><span *ngIf="emailError" style="color: red;">*</span>

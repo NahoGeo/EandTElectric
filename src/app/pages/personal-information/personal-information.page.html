@@ -12,7 +12,9 @@
         <ion-list>
             <ion-item id='img' lines='none' class="ion-no-margin">
                 <input hidden="true" type="file" (change)='uploadFile($event)' accept="image/*" clear-input="true" #imgInput>
-                <ion-img [src]='profile.profileImage || "../../assets/img/noImage.png"' (click)="showOptions()" alt="Image"></ion-img>
+                <ion-avatar>
+                    <ion-img [src]='profile.profileImage || "../../assets/img/noImage.png"' (click)="showOptions()" alt="Image"></ion-img>
+                </ion-avatar>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">
@@ -36,13 +38,13 @@
                 <ion-label position="floating">
                     Phone Number
                 </ion-label>
-                <ion-input [(ngModel)]="profile.phoneNumber" type="text" clear-input="true"></ion-input>
+                <ion-input [(ngModel)]="profile.phoneNumber" type="text" (ionFocus)="phoneEx('phoneNumber')" (ionBlur)="checkChanges('phoneNumber')" clear-input="true"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">
                     Cellphone Number
                 </ion-label>
-                <ion-input [(ngModel)]="profile.cellphoneNumber" type="text" clear-input="true"></ion-input>
+                <ion-input [(ngModel)]="profile.cellphoneNumber" type="text" (ionFocus)="phoneEx('cellphoneNumber')" (ionBlur)="checkChanges('cellphoneNumber')" clear-input="true"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating">

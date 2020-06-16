@@ -16,6 +16,14 @@ export class AppStateService {
     });
   }
 
+  launchCalc() {
+    App.canOpenUrl({url:'com.calculator.app'})
+  }
+
+  closeApp() {
+    App.exitApp()
+  }
+
   backButton() {
     App.addListener('backButton', (data: AppUrlOpen)=> {
       console.log(data.url);

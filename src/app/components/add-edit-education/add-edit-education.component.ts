@@ -41,23 +41,35 @@ export class AddEditEducationComponent implements OnInit {
     this.education.institute = this.education.institute.trim()
     this.education.degree = this.education.degree.trim()
     let errorMessage = ''
-
+    
+    let startDate = new Date(this.education.startDate)
+    let endDate = new Date(this.education.endDate)
+    let currentDate = new Date()
+    
     if (!this.education.institute) {
       errorMessage += `<p>Please write the institute's name</p>`
     }
     if (!this.education.degree) {
       errorMessage += `<p>Please write your degree</p>`
     }
+    if (startDate > currentDate) {
+      errorMessage += `<p>Start date can not be a future date</p>`
+    }
     if (!this.education.current) {
-      if (this.education.startDate >= this.education.endDate) {
-        errorMessage += `<p>End date can't be older or equal than start date</p>
-                         <p>Note: If start date is equal to current date and end date is a future date, they both will be considerate as a same date.</p>`
+      if (startDate > endDate) {
+        errorMessage += `<p>End date can't be older than start date</p>`
       }
-      if (!this.education.endDate){
+      if (startDate.toDateString() === endDate.toDateString()) {
+        errorMessage += `<p>End date can't be equal than start date</p>`
+      }
+      if (!endDate){
         errorMessage += `<p>If you are not studing this carier any more, plese select an end date, but if you keep studing this carier, check it as current</p>`
       }
+      if (endDate > currentDate) {
+        errorMessage += `<p>End date can not be a future date</p>`
+      }
     }else {
-      delete this.education.endDate
+      this.education.endDate = ''
     }
     if (errorMessage.length > 0) {
       const alertMessage = await this.alertCtrl.create({
@@ -70,8 +82,10 @@ export class AddEditEducationComponent implements OnInit {
       })
       return await alertMessage.present()
     }
+    
+    this.education.startDate = startDate.toDateString()
+    this.education.endDate = endDate.toDateString()
 
     this.newEducation.emit(this.education)
   }
-
 }

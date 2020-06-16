@@ -132,6 +132,10 @@ body.dark {
     --ion-color-light-tint: #383a3e;
 }
 
+:focus {
+    outline: none;
+}
+
 
 /*
    * iOS Dark Theme

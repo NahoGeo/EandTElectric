@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NetworkConnectionService } from 'src/app/services/network-connection.service'
+import { AppStateService } from 'src/app/services/app-state.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginPage implements OnInit {
     private verify: ValidatorService,
     private userService: UserService,
     private auth: AuthenticationService,
-    private connection: NetworkConnectionService
+    private connection: NetworkConnectionService,
+    private appState: AppStateService
     ){}
 
   ngOnInit() {
@@ -32,32 +34,25 @@ export class LoginPage implements OnInit {
 
   async networkConnection() {
     let connected = await this.connection.connectionDetector()
-    if (connected) {
+    if (!connected) {
       let showAlert = await this.alertCtrl.create({
           header: 'Connection',
-          message: 'Network conecction succesfully',
+          message: 'You need a network conecction to sign up or sign in',
+          backdropDismiss: false,
           buttons: [{
             text: 'OK',
-            role: 'cancel'
+            handler: ()=>{
+              this.appState.closeApp()
+            }
           }]
+
         })
       return showAlert.present()
-    }else {
-      let showAlert = await this.alertCtrl.create({
-        header: 'Connection',
-        message: 'Network conecction ERROR',
-        buttons: [{
-          text: 'OK',
-          role: 'cancel'
-        }]
-      })
-    return showAlert.present()
     }
-    
   }
 
-  async getUser() {
-    this.user = await this.userService.getUser()
+  getUser() {
+    this.user = this.userService.getUser()
   }
 
   ionViewWillEnter() {
@@ -122,6 +117,7 @@ export class LoginPage implements OnInit {
       
         header: 'Send temporary password',
         message: "Write your email",
+        backdropDismiss: false,
         buttons: [{
           text: 'Ok',
           role: 'cancel'
@@ -136,6 +132,7 @@ export class LoginPage implements OnInit {
       header: 'Send temporary password',
       message: `<p>We will send a temporary password to:</p>
                 <p>${email}</p>`,
+      backdropDismiss: false,
       buttons: [{
         text: 'Cancel',
         role: 'cancel'

@@ -10,11 +10,11 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./edit-work-experience.page.scss'],
 })
 export class EditWorkExperiencePage implements OnInit {
+  
+  user: User
   workExp: WorkExp
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
-
-  user: User
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
@@ -38,5 +38,4 @@ export class EditWorkExperiencePage implements OnInit {
       this.router.navigate(['/work-experience'])
     }, 500)
   }
-
 }

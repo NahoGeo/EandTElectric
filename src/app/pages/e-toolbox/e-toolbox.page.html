@@ -13,14 +13,12 @@
 <ion-content>
     <div class="Container">
         <div class="SubContainer">
-            <ion-list>
-                <ion-card *ngFor="let option of options" routerLink='{{option.path}}'>
-                    <ion-card-title class="ion-text-center">
-                        <ion-label>{{option.title}}</ion-label>
-                    </ion-card-title>
-                    <ion-img src="{{option.img}}"></ion-img>
-                </ion-card>
-            </ion-list>
+            <ion-card *ngFor="let option of options" routerLink='{{option.path}}'>
+                <ion-card-title class="ion-text-center">
+                    <ion-label>{{option.title}}</ion-label>
+                </ion-card-title>
+                <ion-img src="{{option.img}}"></ion-img>
+            </ion-card>
         </div>
     </div>
 </ion-content>

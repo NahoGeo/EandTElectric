@@ -13,7 +13,6 @@ export class WorkExperiencePage implements OnInit {
 
   addWorkExp: boolean = true
 
-
   constructor(private userService: UserService) { }
 
   ngOnInit() {

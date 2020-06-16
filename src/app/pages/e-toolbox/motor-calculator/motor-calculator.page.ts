@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MotorCalculatorService } from '../../services/motor-calculator.service';
+import { MotorCalculatorService } from '../../../services/motor-calculator.service';
 
 @Component({
   selector: 'app-motor-calculator',

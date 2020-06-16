@@ -10,13 +10,18 @@ export class EToolboxPage implements OnInit {
   options = [
     {
       title: 'Motor Calculator',
-      path: '/motor-calculator',
+      path: 'motor-calculator',
       img: '../../assets/img/motor-electrico.png'
     },
     {
       title: 'Wire & Conduit',
-      path: '/wire-and-conduit',
+      path: 'wire-and-conduit',
       img: '../../assets/img/wires-and-conduit.png'
+    },
+    {
+      title: 'Transformer',
+      path: 'transformer',
+      img: '../../assets/img/electric-transformer.png'
     }
   ]
 
