@@ -4,6 +4,7 @@ import { WorkExp } from './work-exp.model';
 import { Training } from './training';
 
 export interface User {
+    id: Number
     profileImage: any
     firstName: string
     lastName: string

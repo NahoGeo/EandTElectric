@@ -12,14 +12,17 @@ import { AlertController } from '@ionic/angular';
 export class AddTrainingPage implements OnInit {
 
   training: Training = {
-    id: '',
     title: '',
     awardedBy: '',
     recognitionDate: new Date().toDateString(),
     description: ''
   }
 
-  constructor(private userService: UserService, private router: Router, private alertCtrl: AlertController) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private alertCtrl: AlertController
+    ) { }
 
   ngOnInit() {
     this.showNote()

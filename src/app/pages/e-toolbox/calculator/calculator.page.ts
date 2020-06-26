@@ -20,12 +20,9 @@ export class CalculatorPage implements OnInit {
   }
 
   enterNumber(number: string) {
-    if(!this.display2) {
-      this.display1 = ''
-      this.display2 = ''
-      this.num1 = ''
-      this.num2 = ''
-      this.lastOperator = ''
+    let last = this.display2.slice(this.display2.length - 1)
+    if(last === '=') {
+      this.clear()
     }
     if(number === '.' && this.num2 === '') {
       number = '0.'
@@ -44,23 +41,26 @@ export class CalculatorPage implements OnInit {
         this.display2 += operator
         this.lastOperator = operator
       }else{
+        if(operator === '=' && this.num1 && !this.num2) {
+          this.display1 = this.num1
+          this.display2 = ''
+        }
+        if(operator === '=' && !this.num1 && this.num2) {
+          this.num1 = this.num2
+          this.display1 = this.num1
+          this.num2 = ''
+          this.display2 = ''
+        }
         if(operator === '=' && this.num1 && this.num2){
           let result = this.calService.equal(this.num1, this.num2, this.lastOperator)
           this.num1 = result
           this.num2 = ''
           this.display1 = this.num1
-          this.display2 = ''
-        }
-        if(operator === '=' && !this.num1 && this.num2) {
-          this.display1 = this.num2
-          this.display2 = ''
-        }
-        if(operator === '=' && this.num1 && !this.num2) {
-          this.display1 = this.num1
-          this.display2 = ''
+          this.display2 += operator
+          this.lastOperator = operator
         }else{
-          if(this.display1) {
-            this.display2 += `Ans${operator}`
+          if(this.display1 && this.lastOperator === '=') {
+            this.display2 = `Ans${operator}`
             this.lastOperator = operator
           }else{
             this.num1 = this.num2

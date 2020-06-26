@@ -12,7 +12,7 @@ import { User } from 'src/app/models/user';
 })
 export class AddEducationPage implements OnInit {
 
-  user: User
+  educations: Array<Education>
 
   education: Education = {
     institute: '',
@@ -22,7 +22,11 @@ export class AddEducationPage implements OnInit {
     current: false
   }
 
-  constructor(private userService: UserService, private router: Router, private alertCtrl: AlertController) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private alertCtrl: AlertController
+    ) { }
 
   ngOnInit() {
     this.showNote()
@@ -34,7 +38,8 @@ export class AddEducationPage implements OnInit {
   }
 
   getUser() {
-    this.user = this.userService.getUser()
+    let user: User = this.userService.getUser()
+    this.educations = user.educations
   }
   
   async showNote() {

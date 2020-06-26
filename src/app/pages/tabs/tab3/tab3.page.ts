@@ -13,7 +13,6 @@ export class Tab3Page implements OnInit {
   darkMode: boolean
 
   constructor(private router: Router, private darkOption: DarkModeService, private auth: AuthenticationService) {
-    this.getStatus()
   }
 
   ngOnInit(){
@@ -24,6 +23,7 @@ export class Tab3Page implements OnInit {
   }
 
   ionViewWillEnter() {
+    this.getStatus()
   }
 
   logOut() {

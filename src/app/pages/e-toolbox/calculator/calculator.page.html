@@ -11,42 +11,40 @@
     <div class="height">
         <ion-fab vertical="top">
             <div class="input-border">
-                <ion-row class="input1">
-                    <ion-input value='{{display1}}' readonly></ion-input>
-                </ion-row>
-                <ion-row class="input2">
-                    <ion-input value='{{display2}}' readonly></ion-input>
-                </ion-row>
+                <ion-input class="input2" value='{{display2}}' readonly></ion-input>
+                <ion-input class="input1" value='{{display1}}' readonly></ion-input>
             </div>
         </ion-fab>
-        <div class="vertical">
-            <ion-row>
-                <ion-col class='ion-text-center' (click)="enterNumber('7')" size='3'>7</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('8')" size='3'>8</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('9')" size='3'>9</ion-col>
-                <ion-col class='ion-text-center' (click)="enterOperator('/')" size='1' offset='1'>÷</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col class='ion-text-center' (click)="enterNumber('4')" size='3'>4</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('5')" size='3'>5</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('6')" size='3'>6</ion-col>
-                <ion-col class='ion-text-center' (click)="enterOperator('x')" size='1' offset='1'>x</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col class='ion-text-center' (click)="enterNumber('1')" size='3'>1</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('2')" size='3'>2</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('3')" size='3'>3</ion-col>
-                <ion-col class='ion-text-center' (click)="enterOperator('-')" size='1' offset='1'>-</ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col class='ion-text-center' (click)="clear()" size='3'>CE</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('0')" size='3'>0</ion-col>
-                <ion-col class='ion-text-center' (click)="enterNumber('.')" size='3'>.</ion-col>
-                <ion-col class='ion-text-center' (click)="enterOperator('+')" size='1' offset='1'>+</ion-col>
-            </ion-row>
+        <div class="Container">
+            <div class="SubContainer">
+                <ion-row>
+                    <ion-col class='ion-text-center' (click)="enterNumber('7')" size='3'>7</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('8')" size='3'>8</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('9')" size='3'>9</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterOperator('/')" size='1' offset='1'>÷</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class='ion-text-center' (click)="enterNumber('4')" size='3'>4</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('5')" size='3'>5</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('6')" size='3'>6</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterOperator('x')" size='1' offset='1'>x</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class='ion-text-center' (click)="enterNumber('1')" size='3'>1</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('2')" size='3'>2</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('3')" size='3'>3</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterOperator('-')" size='1' offset='1'>-</ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col class='ion-text-center' (click)="clear()" size='3'>CE</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('0')" size='3'>0</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterNumber('.')" size='3'>.</ion-col>
+                    <ion-col class='ion-text-center' (click)="enterOperator('+')" size='1' offset='1'>+</ion-col>
+                </ion-row>
+            </div>
         </div>
         <ion-fab vertical="bottom">
-            <ion-button (click)="enterOperator('=')" expand="block" shape="round">
+            <ion-button (click)="enterOperator('=')">
                 =
             </ion-button>
         </ion-fab>

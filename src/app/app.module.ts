@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 import {FormsModule} from '@angular/forms'
 import { ComponentsModule } from './components/components.module'
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,8 @@ import { ComponentsModule } from './components/components.module'
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    ScreenOrientation
   ],
   bootstrap: [AppComponent]
 })

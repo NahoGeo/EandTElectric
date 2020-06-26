@@ -1,5 +1,5 @@
 export interface Training {
-    id: string
+    id?: Number
     title: string
     awardedBy: string
     recognitionDate: string

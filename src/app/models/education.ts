@@ -1,5 +1,5 @@
 export interface Education {
-    id?: string,
+    id?: Number,
     institute: string
     startDate: string
     endDate?: string

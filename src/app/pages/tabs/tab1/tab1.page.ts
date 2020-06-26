@@ -31,12 +31,15 @@ export class Tab1Page {
     }
   ]
 
-  constructor(private router: Router, private authService: AuthenticationService, private alertCtrl: AlertController, private userService: UserService) {
-    this.getUser()
-  }
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService,
+    private alertCtrl: AlertController,
+    private userService: UserService
+    ) {}
 
-  async getUser() {
-    this.user = await this.userService.getUser()
+  getUser() {
+    this.user = this.userService.getUser()
   }
 
   ionViewWillEnter() {

@@ -3,6 +3,7 @@ import { WorkExp } from 'src/app/models/work-exp.model';
 import { UserService } from 'src/app/services/user.service';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-work-experience',
@@ -11,10 +12,9 @@ import { User } from 'src/app/models/user';
 })
 export class AddWorkExperiencePage implements OnInit {
 
-  user: User
+  workExps: Array<WorkExp>
 
   workExp: WorkExp = {
-    id: '',
     name: '',
     position: '',
     startDate: new Date().toDateString(),
@@ -23,7 +23,11 @@ export class AddWorkExperiencePage implements OnInit {
     description: ''
   }
 
-  constructor(private userService: UserService, private alertCtrl: AlertController) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private alertCtrl: AlertController
+    ) { }
 
   ngOnInit() {
     this.showNote()
@@ -35,7 +39,8 @@ export class AddWorkExperiencePage implements OnInit {
   }
 
   getUser() {
-    this.user = this.userService.getUser()
+    let user: User = this.userService.getUser()
+    this.workExps = user.workExps
   }
 
   async showNote() {
@@ -51,6 +56,9 @@ export class AddWorkExperiencePage implements OnInit {
 
   addWorkExp(data: WorkExp) {
     this.userService.addWorkExp(data)
+    setTimeout(()=>{
+      this.router.navigate(['/work-experience'])
+    }, 500)
   }
 
 }

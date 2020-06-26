@@ -28,8 +28,6 @@ export class LoginPage implements OnInit {
     ){}
 
   ngOnInit() {
-    this.getUser()
-    this.networkConnection()
   }
 
   async networkConnection() {
@@ -57,6 +55,7 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.getUser()
+    this.networkConnection()
   }
 
   async logIn(email: any, password: any) {

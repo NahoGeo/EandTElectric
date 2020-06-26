@@ -69,7 +69,7 @@ export class AddEditWorkExperienceComponent implements OnInit {
         errorMessage += `<p>End date can not be a future date</p>`
       }
     }else {
-      delete this.workExp.endDate
+      this.workExp.endDate = ''
     }
     if (!this.workExp.description) {
       errorMessage += `<p>Please describe this position</p>`

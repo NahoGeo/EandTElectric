@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { UserService } from 'src/app/services/user.service'
 import { DarkModeService } from 'src/app/services/dark-mode.service'
 import { AuthenticationService } from './services/authentication.service';
+import { AppStateService } from './services/app-state.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private userService: UserService,
     private darkMode: DarkModeService,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
+    private appState: AppStateService
   ) {
     this.initializeApp();
   }
@@ -32,5 +34,8 @@ export class AppComponent {
       this.darkMode.setStatus()
       this.auth.setIfLogInOrOut()
     });
+    this.appState.appState()
+    this.appState.backButton()
+    this.appState.orientationPORTRAIT()
   }
 }

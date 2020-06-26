@@ -11,25 +11,34 @@ import { User } from 'src/app/models/user';
 })
 export class EditEducationPage implements OnInit {
 
-  user: User
+  educations: Array<Education>
   education: Education
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      const Id = paramMap.get('Id')
+      const Id = Number(paramMap.get('Id'))
       this.education = this.userService.getEducationById(Id)
     })
-    this.getUser()
+    this.getEducations()
   }
 
   ionViewWillEnter() {
-    this.getUser()
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const Id = Number(paramMap.get('Id'))
+      this.education = this.userService.getEducationById(Id)
+    })
+    this.getEducations()
   }
 
-  getUser() {
-    this.user = this.userService.getUser()
+  getEducations() {
+    let user: User = this.userService.getUser()
+    this.educations = user.educations
   }
 
   editEducation(data: Education) {

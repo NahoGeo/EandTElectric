@@ -11,25 +11,34 @@ import { User } from 'src/app/models/user';
 })
 export class EditWorkExperiencePage implements OnInit {
   
-  user: User
+  workExps: Array<WorkExp>
   workExp: WorkExp
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      const Id = paramMap.get('Id')
+      const Id = Number(paramMap.get('Id'))
       this.workExp = this.userService.getWorkExpById(Id)
     })
     this.getUser()
   }
 
   ionViewWillEnter() {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const Id = Number(paramMap.get('Id'))
+      this.workExp = this.userService.getWorkExpById(Id)
+    })
     this.getUser()
   }
 
   getUser() {
-    this.user = this.userService.getUser()
+    let user: User = this.userService.getUser()
+    this.workExps = user.workExps
   }
 
   editWorkExp(data: WorkExp) {

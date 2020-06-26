@@ -11,6 +11,7 @@ import { WorkExp } from '../models/work-exp.model';
 export class UserService {
 
   user: User= {
+    id: 0,
     profileImage: '',
     firstName: '',
     lastName: '',
@@ -65,6 +66,7 @@ export class UserService {
     if (this.user.email){
       remove('user')
       this.user = {
+        id: 0,
         profileImage: '',
         firstName: '',
         lastName: '',
@@ -84,27 +86,18 @@ export class UserService {
     }
   }
 
-  private oldId: number = 0
-
-  /**
-   * it receives an array to get the last object id of this one
-   * and it is assigned to the oldId variable
-   * @param data
-   */
-  private lastId(data: any) {
-    for (let i = 0; i < data.length; i++) {
-      if (i == data.length - 1) {
-        this.oldId= Number(data[i].id)
-      }
-    }
-  }
-
   /**
    * this function returns a new id number for the next object
    * @returns a new id
    */
-  private id() {
-    return this.oldId + 1
+  private id(data: any) {
+    let oldId: number = 0
+    for (let i = 0; i < data.length; i++) {
+      if (i == data.length - 1) {
+        oldId= data[i].id
+      }
+    }
+    return Number(oldId + 1)
   }
 
   /**
@@ -123,7 +116,8 @@ export class UserService {
    * return all the user object varible
    */
   getUser() {
-    return this.user
+    this.setUserValues()
+    return { ...this.user }
   }
 
   /**
@@ -132,7 +126,7 @@ export class UserService {
    * @param {string} id
    * @returns the education object selected
    */
-  getEducationById(id: string) {
+  getEducationById(id: Number) {
     this.setUserValues()
     return this.user.educations.find(education => {return education.id === id})
   }
@@ -140,10 +134,10 @@ export class UserService {
   /**
    * receives a number id from a selected training object
    * and return the object who contain this number id
-   * @param {string} id
+   * @param id
    * @returns the training object selected
    */
-  getTrainingById(id: string) {
+  getTrainingById(id: Number) {
     this.setUserValues()
     return this.user.trainings.find(training => {return training.id === id})
   }
@@ -151,10 +145,10 @@ export class UserService {
   /**
    * receives a number id from a selected work experience object
    * and return the object who contain this number id
-   * @param {string} id
+   * @param id
    * @returns the work experience object selected
    */
-  getWorkExpById(id: string) {
+  getWorkExpById(id: Number) {
     this.setUserValues()
     return this.user.workExps.find(workExp => {return workExp.id === id})
   }
@@ -187,7 +181,7 @@ export class UserService {
    * @param id education object id
    * @param data education object data
    */
-  editEducation(id: string, data: Education) {
+  editEducation(id: Number, data: Education) {
 
     this.user.educations.forEach(education => {
       if(education.id === id){
@@ -209,7 +203,7 @@ export class UserService {
    * @param id training object id
    * @param data training object data
    */
-  editTraining(id: string, data: Training) {
+  editTraining(id: Number, data: Training) {
     this.user.trainings.forEach(training => {
       if(training.id === id){
         training.title = data.title
@@ -229,7 +223,7 @@ export class UserService {
    * @param id work experience object id
    * @param data work experience object data
    */
-  editWorkExp(id: string, data: WorkExp) {
+  editWorkExp(id: Number, data: WorkExp) {
     this.user.workExps.forEach(workExp => {
       if(workExp.id === id){
         workExp.name = data.name,
@@ -251,11 +245,9 @@ export class UserService {
    */
   addEducation(data: Education) {
 
-    this.lastId(this.user.educations)
-
     this.user.educations.push(
       {
-        id: `${this.id()}`,
+        id: this.id(this.user.educations),
         institute: data.institute,
         degree: data.degree,
         startDate: data.startDate,
@@ -273,11 +265,9 @@ export class UserService {
    */
   addTraining(data: Training) {
 
-    this.lastId(this.user.trainings)
-
     this.user.trainings.push(
       {
-        id: `${this.id()}`,
+        id: this.id(this.user.trainings),
         title: data.title,
         awardedBy: data.awardedBy,
         recognitionDate: data.recognitionDate,
@@ -293,12 +283,10 @@ export class UserService {
    * @param {WorkExp} data work experience object
    */
   addWorkExp(data: WorkExp) {
-    
-    this.lastId(this.user.workExps)
 
     this.user.workExps.push(
       {
-        id: `${this.id()}`,
+        id: this.id(this.user.workExps),
         name: data.name,
         position: data.position,
         startDate: data.startDate,
@@ -308,5 +296,47 @@ export class UserService {
       }
     )
     this.saveUser()
+  }
+
+  /**
+   * deletes the education object by id,
+   * then save the user object variable to the storage
+   * @param id education object
+   */
+  deleteEducation(id: Number) {
+    this.user.educations = this.user.educations.filter(education =>{
+      return education.id !== id
+    })
+
+    this.saveUser()
+    return this.user.educations
+  }
+
+  /**
+   * deletes training object by id,
+   * then save the user object variable to the storage
+   * @param id training object
+   */
+  deleteTraining(id: Number) {
+    this.user.trainings = this.user.trainings.filter(training =>{
+      return training.id !== id
+    })
+
+    this.saveUser()
+    return this.user.trainings
+  }
+
+  /**
+   * deletes work experience object by id,
+   * then save the user object variable to the storage
+   * @param id work experience object
+   */
+  deleteWorkExp(id: Number) {
+    this.user.workExps = this.user.workExps.filter(workExp =>{
+      return workExp.id !== id
+    })
+
+    this.saveUser()
+    return this.user.workExps
   }
 }

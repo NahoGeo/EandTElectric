@@ -12,11 +12,22 @@ export class EditTrainingPage implements OnInit {
 
   training: Training
 
-  constructor(private activatedRoute: ActivatedRoute,private router: Router, private userService: UserService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+    ) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(paramMap => {
-      const Id = paramMap.get('Id')
+      const Id = Number(paramMap.get('Id'))
+      this.training = this.userService.getTrainingById(Id)
+    })
+  }
+
+  ionViewWillEnter() {
+    this.activatedRoute.paramMap.subscribe(paramMap => {
+      const Id = Number(paramMap.get('Id'))
       this.training = this.userService.getTrainingById(Id)
     })
   }

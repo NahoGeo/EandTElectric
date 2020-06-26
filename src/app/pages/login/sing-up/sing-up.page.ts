@@ -74,6 +74,7 @@ export class SingUpPage implements OnInit {
       
         header: 'Warning',
         message: `<p>There is a profile already saved.<br>If you continue this profile will be delete</p>`,
+        backdropDismiss: false,
         buttons: [
           {
             text: 'Cancel',

@@ -114,7 +114,6 @@ export class PersonalInformationPage implements OnInit {
       source
     })
     this.profile.profileImage = image.dataUrl
-    console.log(this.profile.profileImage)
   }
 
   phoneEx(option: string) {

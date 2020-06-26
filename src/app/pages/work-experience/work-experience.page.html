@@ -8,26 +8,41 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let workExp of user.workExps">
-        <ion-card-content class="ion-no-padding">
-            <ion-item>
-                <ion-icon name="business" style="margin-right: 10px;"></ion-icon>
-                <ion-label class="ion-text-wrap">
-                    <ion-item class="ion-no-padding" lines='none'>
-                        <h2>{{workExp.name}}</h2>
-                        <ion-icon slot="end" name='pencil' [routerLink]="['edit-work-experience', workExp.id]"></ion-icon>
-                    </ion-item>
-                    <ion-text>
-                        <p>{{workExp.position}}</p>
-                        <p>{{workExp.startDate | date}} <span *ngIf="!workExp.current && workExp.endDate">to {{workExp.endDate | date}}</span>
-                            <span *ngIf="workExp.current || !workExp.endDate">(current)</span>
-                        </p>
-                        <p>{{workExp.description}}</p>
-                    </ion-text>
-                </ion-label>
-            </ion-item>
-        </ion-card-content>
-    </ion-card>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-item-sliding *ngFor="let workExp of workExps">
+        <ion-card>
+            <ion-card-content class="ion-no-padding">
+                <ion-item>
+                    <ion-icon name="business" style="margin-right: 10px;"></ion-icon>
+                    <ion-label class="ion-text-wrap">
+                        <ion-item class="ion-no-padding" lines='none'>
+                            <h2>{{workExp.name}}</h2>
+                        </ion-item>
+                        <ion-text>
+                            <p>{{workExp.position}}</p>
+                            <p>{{workExp.startDate | date}} <span *ngIf="!workExp.current && workExp.endDate">to {{workExp.endDate | date}}</span>
+                                <span *ngIf="workExp.current || !workExp.endDate">(current)</span>
+                            </p>
+                            <p>{{workExp.description}}</p>
+                        </ion-text>
+                    </ion-label>
+                </ion-item>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-item-options side="end" style="height: 80%; margin-top: 4%; padding-right: 5%;">
+            <ion-item-option [routerLink]="['edit-work-experience', workExp.id]">
+                <ion-icon slot="icon-only" name="Pencil"></ion-icon>
+            </ion-item-option>
+            <ion-item-option color="danger" (click)="deleteOption(workExp.id)">
+                <ion-icon slot="icon-only" name="trash"></ion-icon>
+            </ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
+
     <ion-fab *ngIf="addWorkExp" vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button routerLink="add-work-experience">
             <ion-icon name="add"></ion-icon>

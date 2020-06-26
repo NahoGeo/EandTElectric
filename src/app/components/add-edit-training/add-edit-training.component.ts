@@ -20,9 +20,10 @@ export class AddEditTrainingComponent implements OnInit {
   async saveChanges() {
     this.training.title = this.training.title.trim()
     this.training.awardedBy = this.training.awardedBy.trim()
-    this.training.recognitionDate = new Date(this.training.recognitionDate).toDateString()
+    let recognitionDate = new Date(this.training.recognitionDate)
     this.training.description = this.training.description.trim()
     let errorMessage = ''
+    let currentDate = new Date()
 
     if (!this.training.title) {
       errorMessage += `<p>Please write the title of the training</p>`
@@ -30,7 +31,10 @@ export class AddEditTrainingComponent implements OnInit {
     if (!this.training.awardedBy) {
       errorMessage += `<p>Please write who awarded you this title</p>`
     }
-    if(!this.training.recognitionDate) {
+    if (recognitionDate > currentDate) {
+      errorMessage += `<p>Start date can not be a future date</p>`
+    }
+    if(!recognitionDate) {
       errorMessage += `<p>Please select a date</p>`
     }
     if (!this.training.description) {
@@ -47,6 +51,8 @@ export class AddEditTrainingComponent implements OnInit {
       })
       return await alertMessage.present()
     }
+    
+    this.training.recognitionDate = recognitionDate.toDateString()
 
     this.newTraining.emit(this.training)
   }

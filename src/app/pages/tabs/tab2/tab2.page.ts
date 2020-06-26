@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { WorkExp } from 'src/app/models/work-exp.model';
+import { Education } from 'src/app/models/education';
+import { Training } from 'src/app/models/training';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tab2',
@@ -9,31 +14,59 @@ import { User } from 'src/app/models/user';
 })
 export class Tab2Page implements OnInit {
 
+  private subscription: Subscription
+
   user: User
+  workExps: Array<WorkExp>
+  educations: Array<Education>
+  trainings: Array<Training>
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
+
+  async ngOnInit(): Promise<void> {
+    await this.onEnter();
+
+    this.subscription = this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd && event.url === '/tabs/tab2') {
+            this.onEnter();
+        }
+    });
   }
-
-  ngOnInit(){
+  
+  onEnter() {
     this.getUser()
   }
   
   getUser() {
     this.user = this.userService.getUser()
+    this.assignArrays()
   }
-  
-  ionViewWillEnter() {
+
+  assignArrays() {
+    this.workExps = []
+    this.educations = []
+    this.trainings = []
+    
+    for(let i = 0; i < 2; i++) {
+      if(this.user.workExps[i] && !this.workExps[i]){
+        this.workExps[i] = this.user.workExps[i]
+      }
+
+      if(this.user.educations[i] && !this.educations[i]){
+        this.educations[i] = this.user.educations[i]
+      }
+
+      if(this.user.trainings[i] && !this.trainings[i]){
+        this.trainings[i] = this.user.trainings[i]
+      }
+    }
+  }
+
+  doRefresh(event) {
     this.getUser()
+    event.target.complete();
   }
-
-  /* async presentLoading() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Please wait...',
-      duration: 2000
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!', role, data);
-  } */
 }

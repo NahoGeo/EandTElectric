@@ -1,5 +1,5 @@
 export interface WorkExp {
-    id:string
+    id?: Number
     name:string
     position: string
     startDate: string
