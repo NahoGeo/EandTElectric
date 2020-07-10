@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Training } from 'src/app/models/training';
 import { User } from 'src/app/models/user';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonList } from '@ionic/angular';
 
 @Component({
   selector: 'app-training',
@@ -12,6 +12,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./training.page.scss'],
 })
 export class TrainingPage implements OnInit {
+  @ViewChild('lista', {static:false}) lista :IonList
 
   private subscription: Subscription
 
@@ -44,36 +45,25 @@ export class TrainingPage implements OnInit {
     this.getUser()
     this.changeAddTraining()
     this.showFirstNote()
-    this.showSecondNote()
   }
+
+  private showMessage1Counter = 0
 
   async showFirstNote() {
-    if(this.trainings.length === 0) {
-      const note1 = await this.alertCtrl.create({
-        header: 'Training',
-        message: 'Here goes your training history.<br>Click the plus button to add your training',
-        backdropDismiss: false,
-        buttons: [{
-          text: 'OK',
-          role: 'cancel'
-        }]
-      })
-      return note1.present()
-    }
-  }
-
-  async showSecondNote() {
-    if(this.trainings.length === 1) {
-      const note2 = await this.alertCtrl.create({
-        header: 'Training',
-        message: 'You can edit or delete your experience, just slide the field from right to left to show the options',
-        backdropDismiss: false,
-        buttons: [{
-          text: 'OK',
-          role: 'cancel'
-        }]
-      })
-      return note2.present()
+    if(this.showMessage1Counter === 0) {
+      if(this.trainings.length === 0) {
+        this.showMessage1Counter ++
+        const note1 = await this.alertCtrl.create({
+          header: 'Training',
+          message: 'Here goes your training history.<br>Click the plus button to add your training',
+          backdropDismiss: false,
+          buttons: [{
+            text: 'OK',
+            role: 'cancel'
+          }]
+        })
+        return note1.present()
+      }
     }
   }
 
@@ -92,7 +82,33 @@ export class TrainingPage implements OnInit {
   }
 
   deleteOption(id: Number) {
-    this.trainings = this.userService.deleteTraining(id)
+    this.lista.closeSlidingItems()
+    this.showDeleteAlert(id)
   }
 
+  async showDeleteAlert(id: Number) {
+    const deleteAlert = await this.alertCtrl.create({
+      header: 'Delete',
+      message: 'Delete this training?',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'no',
+          role: 'cancel'
+        },
+        {
+          text: 'yes',
+          handler: ()=>{
+            this.deleteTraining(id)
+          }
+        }
+      ]
+    })
+    return deleteAlert.present()
+  }
+
+  deleteTraining(id: Number) {
+    this.trainings = this.userService.deleteTraining(id)
+    this.changeAddTraining()
+  }
 }

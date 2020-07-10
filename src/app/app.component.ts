@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service'
 import { DarkModeService } from 'src/app/services/dark-mode.service'
 import { AuthenticationService } from './services/authentication.service';
 import { AppStateService } from './services/app-state.service';
+import { JobOpportunityService } from './services/job-opportunity.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
     private userService: UserService,
     private darkMode: DarkModeService,
     private auth: AuthenticationService,
-    private appState: AppStateService
+    private appState: AppStateService,
+    private JOService: JobOpportunityService
   ) {
     this.initializeApp();
   }
@@ -33,6 +35,7 @@ export class AppComponent {
       this.userService.setUser()
       this.darkMode.setStatus()
       this.auth.setIfLogInOrOut()
+      this.JOService.setPositionsAplyed()
     });
     this.appState.appState()
     this.appState.backButton()

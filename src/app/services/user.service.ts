@@ -16,7 +16,6 @@ export class UserService {
     firstName: '',
     lastName: '',
     email: '',
-    password: '',
     phoneNumber: '',
     cellphoneNumber: '',
     address: '',
@@ -38,10 +37,11 @@ export class UserService {
    */
   async setUser() {
     const user = await get('user');
-    if (!user) {
+    if (user) {
+      this.setUserValues()
+    }else{
       this.saveUser()
     }
-    this.setUserValues()
   }
 
   /**
@@ -49,6 +49,11 @@ export class UserService {
    */
   private saveUser() {
     set('user', this.user)
+  }
+
+  saveUserFrmAPI(user: User) {
+    this.user = user
+    set('user', user)
   }
 
   /**
@@ -71,7 +76,6 @@ export class UserService {
         firstName: '',
         lastName: '',
         email: '',
-        password: '',
         phoneNumber: '',
         cellphoneNumber: '',
         address: '',
@@ -106,8 +110,8 @@ export class UserService {
    * @param data object
    */
   newSignInUser(data: any) {
+    this.user.id = data.id
     this.user.email = data.email
-    this.user.password = data.password
     
     this.saveUser()
   }
@@ -226,7 +230,7 @@ export class UserService {
   editWorkExp(id: Number, data: WorkExp) {
     this.user.workExps.forEach(workExp => {
       if(workExp.id === id){
-        workExp.name = data.name,
+        workExp.company = data.company,
         workExp.position = data.position,
         workExp.startDate = data.startDate,
         workExp.endDate = data.endDate,
@@ -287,7 +291,7 @@ export class UserService {
     this.user.workExps.push(
       {
         id: this.id(this.user.workExps),
-        name: data.name,
+        company: data.company,
         position: data.position,
         startDate: data.startDate,
         endDate: data.endDate,

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { SyncronizationService } from 'src/app/services/syncronization.service';
 
 @Component({
   selector: 'app-tab1',
@@ -33,9 +33,9 @@ export class Tab1Page {
 
   constructor(
     private router: Router,
-    private authService: AuthenticationService,
     private alertCtrl: AlertController,
-    private userService: UserService
+    private userService: UserService,
+    private syncDB: SyncronizationService
     ) {}
 
   getUser() {
@@ -44,6 +44,7 @@ export class Tab1Page {
 
   ionViewWillEnter() {
     this.getUser()
+    this.syncDB.updateUserPerDay()
   }
   
   async checkAuth(path: string) {

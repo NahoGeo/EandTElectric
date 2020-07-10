@@ -38,8 +38,6 @@ export class AddEditEducationComponent implements OnInit {
   }
 
   async saveChanges() {
-    this.education.institute = this.education.institute.trim()
-    this.education.degree = this.education.degree.trim()
     let errorMessage = ''
     
     let startDate = new Date(this.education.startDate)
@@ -83,8 +81,11 @@ export class AddEditEducationComponent implements OnInit {
       return await alertMessage.present()
     }
     
+    
+    this.education.institute = this.education.institute.trim()
+    this.education.degree = this.education.degree.trim()
     this.education.startDate = startDate.toDateString()
-    this.education.endDate = endDate.toDateString()
+    if(this.education.endDate !== ''){this.education.endDate = endDate.toDateString()}
 
     this.newEducation.emit(this.education)
   }

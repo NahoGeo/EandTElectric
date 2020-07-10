@@ -1,7 +1,7 @@
 <ion-card>
     <ion-item>
         <ion-label position="floating">Company</ion-label>
-        <ion-input [(ngModel)]="workExp.name" clear-input="true" type="text"></ion-input>
+        <ion-input [(ngModel)]="workExp.company" clear-input="true" type="text"></ion-input>
     </ion-item>
     <ion-item>
         <ion-label position="floating">Position</ion-label>
@@ -24,8 +24,6 @@
         <ion-textarea [(ngModel)]="workExp.description" clear-input="true" type="text"></ion-textarea>
     </ion-item>
 </ion-card>
-<ion-item lines='none'>
-    <ion-button block color="primary" style="margin: auto;" type="submit" (click)="saveChanges()">
-        Save changes
-    </ion-button>
-</ion-item>
+<ion-button expand="block" color="primary" style="margin: auto; width: 95%;" type="submit" (click)="saveChanges()">
+    Save changes
+</ion-button>

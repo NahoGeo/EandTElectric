@@ -12,36 +12,40 @@
         <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
 
-    <ion-item-sliding *ngFor="let education of educations">
-        <ion-card>
-            <ion-card-content class="ion-no-padding">
-                <ion-item>
-                    <ion-icon name="school" style="margin-right: 10px;"></ion-icon>
-                    <ion-label class="ion-text-wrap">
-                        <ion-item lines='none' class="ion-no-padding ion">
-                            <h2>{{education.institute}}</h2>
-                        </ion-item>
-                        <ion-text>
-                            <p>{{education.degree}}</p>
-                            <p>{{education.startDate | date}} <span *ngIf="!education.current && education.endDate">to {{education.endDate | date}}</span>
-                                <span *ngIf="education.current || !education.endDate">(current)</span>
-                            </p>
-                        </ion-text>
-                    </ion-label>
-                </ion-item>
-            </ion-card-content>
-        </ion-card>
+    <ion-list #lista style="background: none;">
+        <ion-item-sliding *ngFor="let education of educations">
+            <ion-card>
+                <ion-card-content class="ion-no-padding">
+                    <ion-item>
+                        <ion-icon name="school" style="margin-right: 10px;"></ion-icon>
+                        <ion-label class="ion-text-wrap">
+                            <ion-item lines='none' class="ion-no-padding ion">
+                                <h2>{{education.institute}}</h2>
+                            </ion-item>
+                            <ion-text>
+                                <p>{{education.degree}}</p>
+                                <p>{{education.startDate | date}} <span *ngIf="!education.current && education.endDate">to {{education.endDate | date}}</span>
+                                    <span *ngIf="education.current || !education.endDate">(current)</span>
+                                </p>
+                            </ion-text>
+                            <ion-item lines="none">
+                                <ion-icon slot="end" name="arrow-back"></ion-icon>
+                            </ion-item>
+                        </ion-label>
+                    </ion-item>
+                </ion-card-content>
+            </ion-card>
 
-        <ion-item-options side="end" style="height: 80%; margin-top: 3%; padding-right: 5%;">
-            <ion-item-option [routerLink]="['edit-education', education.id]">
-                <ion-icon slot="icon-only" name="Pencil"></ion-icon>
-            </ion-item-option>
-            <ion-item-option color="danger" (click)="deleteOption(education.id)">
-                <ion-icon slot="icon-only" name="trash"></ion-icon>
-            </ion-item-option>
-        </ion-item-options>
-    </ion-item-sliding>
-
+            <ion-item-options side="end" style="height: 80%; margin-top: 3%; padding-right: 5%;">
+                <ion-item-option [routerLink]="['edit-education', education.id]">
+                    <ion-icon slot="icon-only" name="Pencil"></ion-icon>
+                </ion-item-option>
+                <ion-item-option color="danger" (click)="deleteOption(education.id)">
+                    <ion-icon slot="icon-only" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
     <ion-fab *ngIf="addEducation" vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button routerLink="add-education">
             <ion-icon name="add"></ion-icon>

@@ -38,16 +38,14 @@ export class AddEditWorkExperienceComponent implements OnInit {
   }
 
   async saveChanges() {
-    this.workExp.name = this.workExp.name.trim()
-    this.workExp.position = this.workExp.position.trim()
     let errorMessage = ''
     
     let startDate = new Date(this.workExp.startDate)
     let endDate = new Date(this.workExp.endDate)
     let currentDate = new Date()
 
-    if (!this.workExp.name) {
-      errorMessage += `<p>Please write the Company's name</p>`
+    if (!this.workExp.company) {
+      errorMessage += `<p>Please write the Company's company</p>`
     }
     if (!this.workExp.position) {
       errorMessage += `<p>Please add a position</p>`
@@ -86,8 +84,10 @@ export class AddEditWorkExperienceComponent implements OnInit {
       return await alertMessage.present()
     }
 
+    this.workExp.company = this.workExp.company.trim()
+    this.workExp.position = this.workExp.position.trim()
     this.workExp.startDate = startDate.toDateString()
-    this.workExp.endDate = endDate.toDateString()
+    if(this.workExp.endDate !== ''){this.workExp.endDate = endDate.toDateString()}
 
     this.newWorkExp.emit(this.workExp)
   }

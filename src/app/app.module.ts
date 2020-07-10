@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {FormsModule} from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http'
 import { ComponentsModule } from './components/components.module'
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
 
@@ -21,7 +22,8 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
     IonicModule.forRoot(),
     AppRoutingModule,
     FormsModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

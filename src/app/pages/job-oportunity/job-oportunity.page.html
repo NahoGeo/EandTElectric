@@ -11,7 +11,7 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let option of options" (click)='positionSelected(option.option)' class="ion-block">
+    <ion-card *ngFor="let option of options" (click)='positionSelected(option.option)' class="ion-block" disabled="{{option.selected}}">
         <ion-item lines="none">
             <ion-icon name="{{option.icon}}"></ion-icon>
             <ion-label class="ion-text-center">{{option.option}}</ion-label>

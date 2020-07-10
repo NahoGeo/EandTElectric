@@ -16,14 +16,11 @@ export class Tab3Page implements OnInit {
   }
 
   ngOnInit(){
+    this.getStatus()
   }
 
   getStatus() {
     this.darkMode = this.darkOption.getStatus()
-  }
-
-  ionViewWillEnter() {
-    this.getStatus()
   }
 
   logOut() {

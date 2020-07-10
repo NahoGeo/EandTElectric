@@ -29,8 +29,8 @@
                 <ion-card-title class="ion-padding-start">{{user.firstName == '' ? 'Full' : user.firstName}} {{user.lastName == '' ? 'Name' :user.lastName}}</ion-card-title>
                 <ion-icon slot="end" name="pencil" routerLink="/edit-profile"></ion-icon>
             </ion-item>
-            <ion-card-subtitle class="ion-padding-start">{{user.workExps[0] == undefined ? "Position" :user.workExps[0].position}} in {{user.workExps[0] == undefined ? "Company's Name" :user.workExps[0].name}}</ion-card-subtitle>
-            <ion-label class="ion-padding-start">{{user.workExps[0] == undefined ? "Company's Name " :user.workExps[0].name}} - {{user.educations[0] == undefined ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
+            <ion-card-subtitle class="ion-padding-start">{{user.workExps[0] == undefined ? "Position" :user.workExps[0].position}} in {{user.workExps[0] == undefined ? "Company's Name" :user.workExps[0].company}}</ion-card-subtitle>
+            <ion-label class="ion-padding-start">{{user.workExps[0] == undefined ? "Company's Name " :user.workExps[0].company}} - {{user.educations[0] == undefined ? "Institute's Name" :user.educations[0].institute}}</ion-label><br>
             <ion-label class="ion-padding-start">{{user.city == '' ? "City" : user.city}}, {{user.state == '' ? "State" : user.state}}</ion-label>
         </ion-card-content>
     </ion-card>
@@ -43,7 +43,7 @@
             <ion-item *ngFor="let workExp of workExps">
                 <ion-icon name="business" style="margin-right: 10px;"></ion-icon>
                 <ion-label class="ion-text-wrap">
-                    <h2>{{workExp == undefined ? "Company's Name" :workExp.name}}</h2>
+                    <h2>{{workExp == undefined ? "Company's Name" :workExp.company}}</h2>
                     <ion-text>
                         <p>{{workExp == undefined ? "Position" :workExp.position}}</p>
                         <p>{{workExp == undefined ? "Start Date" :workExp.startDate | date}} <span *ngIf="!workExp.current && workExp.endDate">to {{user.workExps[0] == undefined ? "End Date" :workExp.endDate | date}}</span>

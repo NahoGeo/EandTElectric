@@ -20,8 +20,6 @@
         <ion-datetime [(ngModel)]="education.endDate" display-format="MM/DD/YYYY"></ion-datetime>
     </ion-item>
 </ion-card>
-<ion-item lines='none'>
-    <ion-button block color="primary" style="margin: auto;" type="submit" (click)="saveChanges()">
-        Save changes
-    </ion-button>
-</ion-item>
+<ion-button expand="block" color="primary" style="width: 95%; margin: auto;" type="submit" (click)="saveChanges()">
+    Save changes
+</ion-button>

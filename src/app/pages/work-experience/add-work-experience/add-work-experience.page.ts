@@ -15,7 +15,7 @@ export class AddWorkExperiencePage implements OnInit {
   workExps: Array<WorkExp>
 
   workExp: WorkExp = {
-    name: '',
+    company: '',
     position: '',
     startDate: new Date().toDateString(),
     endDate: new Date().toDateString(),

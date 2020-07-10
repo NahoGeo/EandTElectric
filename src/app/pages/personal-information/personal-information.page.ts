@@ -130,6 +130,42 @@ export class PersonalInformationPage implements OnInit {
     }
   }
 
+  autoComplet(option: string) {
+    switch(option) {
+      case 'phoneNumber':
+        if (this.profile.phoneNumber.slice(0) && this.profile.phoneNumber.slice(0, 1) !== '(') {
+          this.profile.phoneNumber = `(${this.profile.phoneNumber}`
+        }
+        if(this.profile.phoneNumber.slice(4) && this.profile.phoneNumber.slice(4, 5) !== ')') {
+          let previousN = this.profile.phoneNumber.slice(0, 4)
+          let nextN = this.profile.phoneNumber.slice(4)
+          this.profile.phoneNumber = `${previousN})${nextN}`
+        }
+        if(this.profile.phoneNumber.slice(8) && this.profile.phoneNumber.slice(8, 9) !== '-') {
+          let previousN = this.profile.phoneNumber.slice(0, 8)
+          let nextN = this.profile.phoneNumber.slice(8)
+          this.profile.phoneNumber = `${previousN}-${nextN}`
+        }
+        break
+
+      case 'cellphoneNumber':
+        if (this.profile.cellphoneNumber.slice(0) && this.profile.cellphoneNumber.slice(0, 1) !== '(') {
+          this.profile.cellphoneNumber = `(${this.profile.cellphoneNumber}`
+        }
+        if(this.profile.cellphoneNumber.slice(4) && this.profile.cellphoneNumber.slice(4, 5) !== ')') {
+          let previousN = this.profile.cellphoneNumber.slice(0, 4)
+          let nextN = this.profile.cellphoneNumber.slice(4)
+          this.profile.cellphoneNumber = `${previousN})${nextN}`
+        }
+        if(this.profile.cellphoneNumber.slice(8) && this.profile.cellphoneNumber.slice(8, 9) !== '-') {
+          let previousN = this.profile.cellphoneNumber.slice(0, 8)
+          let nextN = this.profile.cellphoneNumber.slice(8)
+          this.profile.cellphoneNumber = `${previousN}-${nextN}`
+        }
+        break
+    }
+  }
+
   checkChanges(option: string) {
     switch(option) {
       case 'phoneNumber':
@@ -167,11 +203,11 @@ export class PersonalInformationPage implements OnInit {
     }
     if(this.profile.phoneNumber != '') {
       if (!this.valid.isPhone(this.profile.phoneNumber)) {
-        errorMessage += `<p>A valid Phone number is required.<br>Exp: (123)456-7890 or (123)4567890.</p>`
+        errorMessage += `<p>A valid Phone number is required.<br>Exp: (123)456-7890.</p>`
       }
     }
     if(!this.profile.cellphoneNumber || !this.valid.isPhone(this.profile.cellphoneNumber)) {
-      errorMessage += `<p>A valid cellphone number is required.<br>Exp: (123)456-7890 or (123)4567890.</p>`
+      errorMessage += `<p>A valid cellphone number is required.<br>Exp: (123)456-7890.</p>`
     }
     if(!this.profile.address) {
       errorMessage += `<p>Address is required.</p>`

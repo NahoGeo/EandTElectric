@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { WorkExp } from 'src/app/models/work-exp.model';
-import { AlertController } from '@ionic/angular';
+import { AlertController, IonList } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./work-experience.page.scss'],
 })
 export class WorkExperiencePage implements OnInit {
+  @ViewChild('lista', {static:false}) lista :IonList
 
   private subscription: Subscription
 
@@ -44,36 +45,25 @@ export class WorkExperiencePage implements OnInit {
     this.getUser()
     this.changeAddWorkExp()
     this.showFirstNote()
-    this.showSecondNote()
   }
+
+  private showMessage1Counter = 0
 
   async showFirstNote() {
-    if(this.workExps.length === 0) {
-      const note1 = await this.alertCtrl.create({
-        header: 'Work Experience',
-        message: 'Here goes your work experience history.<br>Click the plus button to add your work experience',
-        backdropDismiss: false,
-        buttons: [{
-          text: 'OK',
-          role: 'cancel'
-        }]
-      })
-      return note1.present()
-    }
-  }
-
-  async showSecondNote() {
-    if(this.workExps.length === 1) {
-      const note2 = await this.alertCtrl.create({
-        header: 'Work Experience',
-        message: 'You can edit or delete your experience, just slide the field from right to left to show the options',
-        backdropDismiss: false,
-        buttons: [{
-          text: 'OK',
-          role: 'cancel'
-        }]
-      })
-      return note2.present()
+    if(this.showMessage1Counter === 0) {
+      if(this.workExps.length === 0) {
+        this.showMessage1Counter ++
+        const note1 = await this.alertCtrl.create({
+          header: 'Work Experience',
+          message: 'Here goes your work experience history.<br>Click the plus button to add your work experience',
+          backdropDismiss: false,
+          buttons: [{
+            text: 'OK',
+            role: 'cancel'
+          }]
+        })
+        return note1.present()
+      }
     }
   }
 
@@ -90,8 +80,35 @@ export class WorkExperiencePage implements OnInit {
       this.addWorkExp = true
     }
   }
-
+  
   deleteOption(id: Number) {
+    this.lista.closeSlidingItems()
+    this.showDeleteAlert(id)
+  }
+
+  async showDeleteAlert(id: Number) {
+    const deleteAlert = await this.alertCtrl.create({
+      header: 'Delete',
+      message: 'Delete this education?',
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'no',
+          role: 'cancel'
+        },
+        {
+          text: 'yes',
+          handler: ()=>{
+            this.deleteWorkExp(id)
+          }
+        }
+      ]
+    })
+    return deleteAlert.present()
+  }
+
+  deleteWorkExp(id: Number) {
     this.workExps = this.userService.deleteWorkExp(id)
+    this.changeAddWorkExp()
   }
 }

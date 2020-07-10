@@ -3,6 +3,7 @@ import { IonRouterOutlet, AlertController, LoadingController, Platform } from '@
 import { Router } from '@angular/router';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx'
 import { Plugins, AppState, Motion } from '@capacitor/core';
+import { SyncronizationService } from './syncronization.service';
 const { App } = Plugins;
 
 @Injectable({
@@ -16,7 +17,8 @@ export class AppStateService {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private screenOrientation: ScreenOrientation,
-    private plt: Platform
+    private plt: Platform,
+    private syncDB: SyncronizationService
   ) { }
 
   appState() {
@@ -26,7 +28,8 @@ export class AppStateService {
         message: 'Waiting',
         duration: 2000
       })
-      if (!state.isActive) {
+      if (state.isActive) {
+        this.syncDB.updateUserPerDay()
         return waiter.present()
       }
     })
@@ -38,24 +41,30 @@ export class AppStateService {
 
   backButton() {
     App.addListener('backButton', async ()=> {
+      let counter = 0
       if(this.routerOutlet && this.routerOutlet.canGoBack()) {
         this.routerOutlet.pop()
-      }else if(this.router.url === '/tabs/tab1' || this.router.url === '/tabs/tab2' || this.router.url === '/tabs/tab3' || this.router.url === '/login') {
-        const outAlert = await this.alertCtrl.create({
-          header: 'Exit',
-          message: 'Do you really want to close the app?',
-          backdropDismiss: false,
-          buttons: [{
-            text: 'Cancel',
-            role: 'cancel'
-          },{
-            text: 'Yes',
-            handler: () =>{
-              this.closeApp()
-            }
-          }]
-        })
-        return outAlert.present()
+      } else {
+        if (counter === 0) {
+          if(this.router.url === '/tabs/tab1' || this.router.url === '/tabs/tab2' || this.router.url === '/tabs/tab3' || this.router.url === '/login') {
+            counter ++
+            const outAlert = await this.alertCtrl.create({
+              header: 'Exit',
+              message: 'Do you really want to close the app?',
+              backdropDismiss: false,
+              buttons: [{
+                text: 'Cancel',
+                role: 'cancel'
+              },{
+                text: 'Yes',
+                handler: () =>{
+                  this.closeApp()
+                }
+              }]
+            })
+            return outAlert.present()
+          }
+        }
       }
     })
   }

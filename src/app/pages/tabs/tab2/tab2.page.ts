@@ -6,6 +6,9 @@ import { Education } from 'src/app/models/education';
 import { Training } from 'src/app/models/training';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SyncronizationService } from 'src/app/services/syncronization.service';
+import { ApiResponse } from 'src/app/models/response';
+import { NetworkConnectionService } from 'src/app/services/network-connection.service';
 
 @Component({
   selector: 'app-tab2',
@@ -23,7 +26,9 @@ export class Tab2Page implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private syncService: SyncronizationService,
+    private connection: NetworkConnectionService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -65,8 +70,25 @@ export class Tab2Page implements OnInit {
     }
   }
 
-  doRefresh(event) {
-    this.getUser()
-    event.target.complete();
+  async doRefresh(event) {
+    let connected = await this.connection.connectionDetector()
+    if (connected) {
+      this.syncService.updateUser().subscribe(
+        (res: ApiResponse) => {
+          console.log(res.message)
+          this.userService.saveUserFrmAPI(res.body)
+          this.getUser()
+          event.target.complete()
+        },
+        err => {
+          console.error(err.error.message)
+          this.getUser()
+          event.target.complete()
+        }
+      )
+    }else{
+      this.getUser()
+      event.target.complete()
+    }
   }
 }

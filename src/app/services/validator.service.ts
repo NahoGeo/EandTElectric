@@ -8,12 +8,12 @@ export class ValidatorService {
   constructor() { }
 
   validPassword(stringToValidate) {
-    var regularExpression = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\$%\^&\*])(?=.{8,})");
+    var regularExpression = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[-_.,!\/@#$%^&*=+{}\[\]\(\)\\])(?=.{8,})/
     return regularExpression.test(stringToValidate);
   }
   
   validZipCode(stringToValidate) {
-    var regularExpression = /[0-9]{5}(?:-[0-9]{4})?/
+    var regularExpression = /^[0-9]{5}(?:-[0-9]{4})?$/
     return regularExpression.test(stringToValidate);
   }
 
@@ -49,7 +49,7 @@ export class ValidatorService {
   }
   
   isPhone(stringToValidate) {
-      var regularExpression = /\(([0-9]{3})\)([0-9]{3})\-?([0-9]{4})/ //<--USA format||HN format-->/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
+      var regularExpression = /\(([0-9]{3})\)([0-9]{3})\-([0-9]{4})/ //<--USA format||HN format-->/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
       return regularExpression.test(stringToValidate);
   }
 

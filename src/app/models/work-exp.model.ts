@@ -1,6 +1,6 @@
 export interface WorkExp {
     id?: Number
-    name:string
+    company:string
     position: string
     startDate: string
     endDate?: string

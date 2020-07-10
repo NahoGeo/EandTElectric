@@ -17,10 +17,10 @@ export class DarkModeService {
   async setStatus() {
     const value = await get('darkMode')
     
-    if (!value) {
-      this.setDarkModeOff()
-    }else {
+    if (value) {
       this.setDarkModeOn()
+    }else {
+      this.setDarkModeOff()
     }
   }
 
