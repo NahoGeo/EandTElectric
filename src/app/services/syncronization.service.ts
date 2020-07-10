@@ -10,8 +10,7 @@ import { JobOpportunityService } from './job-opportunity.service';
   providedIn: 'root'
 })
 export class SyncronizationService {
-  //http://localhost:3000/api/user/update/20
-  httpLink = 'http://localhost:3000/api'
+  httpLink = 'https://eandtelectricapp.herokuapp.com/api'
 
   constructor(
     private http: HttpClient,
@@ -32,7 +31,7 @@ export class SyncronizationService {
     let lastUpdate = await get('lastUpdate')
 
     if(lastUpdate) {
-      console.log(lastUpdate)
+      console.log('last update: ' + lastUpdate)
       let dateToCopare = new Date(lastUpdate)
       let currentDate = new Date()
       
@@ -49,7 +48,7 @@ export class SyncronizationService {
         )
         this.updateApplications().subscribe(
           (res: ApiResponse) => {
-            console.log(res.message, res.body)
+            console.log(res.message)
             let positionsSelected = res.body
             this.JOService.savePositionsAplyedFrmApi(positionsSelected)
           },
@@ -59,7 +58,26 @@ export class SyncronizationService {
         )
       }
     } else {
-      this.setLastUpdate()
+      this.updateUser().subscribe(
+        (res: ApiResponse) => {
+          console.log(res.message)
+          this.userService.saveUserFrmAPI(res.body)
+          this.setLastUpdate()
+        },
+        err => {
+          console.error(err)
+        }
+      )
+      this.updateApplications().subscribe(
+        (res: ApiResponse) => {
+          console.log(res.message)
+          let positionsSelected = res.body
+          this.JOService.savePositionsAplyedFrmApi(positionsSelected)
+        },
+        err => {
+          console.error(err)
+        }
+      )
     }
   }
 

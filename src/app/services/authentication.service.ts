@@ -8,8 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  //http://localhost:3000/api/sign-up/confirm-email
-  private httpLink = 'http://localhost:3000/api'
+  private httpLink = 'https://eandtelectricapp.herokuapp.com/api'
   private isLogIn: boolean
 
   constructor(

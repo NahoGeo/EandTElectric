@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { set, get } from 'src/app/services/storage';
 import { JobOpportunityService } from 'src/app/services/job-opportunity.service';
 
 @Component({

@@ -152,6 +152,20 @@ export class SingUpPage implements OnInit {
           })
       
           return await alertMessage.present()
+        }else{
+          console.error(err)
+          this.loading.dismiss()
+          const alertMessage = await this.alertCtrl.create({
+  
+            header: 'Email Confirmation Error',
+            message: `There was a error when trying to sign up.<br>Sign up error: ${err.error.message}`,
+            buttons: [{
+              text: 'ok',
+              role: 'cancel'
+            }]
+          })
+      
+          return await alertMessage.present()
         }
       }
     )
@@ -223,7 +237,7 @@ export class SingUpPage implements OnInit {
     this.showLoader()
     this.auth.signUp(email, password).subscribe(
       (res: ApiResponse) => {
-        console.log(res.body)
+        console.log(res.message)
         this.loading.dismiss()
         this.user.id = res.body
         this.auth.setLogIn()

@@ -109,6 +109,7 @@ export class LoginPage implements OnInit {
           this.userService.saveUserFrmAPI(res.body)
           this.sync.getApplications().subscribe(
             (res: ApiResponse) => {
+              if(res.message){console.log(res.message)}
               let positionsSelected = res.body
               set('positionsSelected', positionsSelected)
             }
@@ -117,7 +118,7 @@ export class LoginPage implements OnInit {
           this.router.navigate(['/tabs/tab1'])
         },
         async err => {
-          console.error(err.message)
+          console.error(err)
           this.loading.dismiss()
           const alertMessage = await this.alertCtrl.create({
   
